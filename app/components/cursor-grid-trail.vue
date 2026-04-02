@@ -13,15 +13,18 @@ interface TrailCell {
 }
 
 const GLYPH_ARR = Array.from(
-  'あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへりるれろわをんアイウエオカキクケコサシスセソタチツテトナニヌネノ ∴∵░▒⊹✹✺✮♱⚥⚦☿⚢⚣',
+  'いうえおかきくけこさしすせそたちつてとなにのはひへるれろわをんアイウエオカキクケコサシスセソタチツテトナニヌネノ ∴∵░▒⊹✹✺✮♱⚥⚦☿⚢⚣☺☻♡♥X',
 )
 
-const BRUSH_RADIUS_CELLS = 2.5
+const BRUSH_RADIUS_CELLS = 1
 const GLYPH_COUNT = GLYPH_ARR.length
 
 /** ~1s total: glyph flicker, then one blank beat, then despawn */
 const BLANK_AFTER_MS = 820
 const HARD_KILL_MS = 1050
+
+/** Trail only paints while the pointer is over this section (`festival-hero.vue`). */
+const HERO_ROOT_ID = 'site-hero'
 
 const cells = shallowRef<TrailCell[]>([])
 const gridKeyToId = new Map<string, number>()
@@ -67,6 +70,29 @@ function syncScroll() {
   if (typeof window === 'undefined') return
   scrollX.value = window.scrollX
   scrollY.value = window.scrollY
+}
+
+function getHeroRoot(): HTMLElement | null {
+  if (typeof document === 'undefined') return null
+  return document.getElementById(HERO_ROOT_ID)
+}
+
+function isPointerInHero(clientX: number, clientY: number): boolean {
+  const hero = getHeroRoot()
+  if (!hero) return false
+  const r = hero.getBoundingClientRect()
+  return (
+    clientX >= r.left
+    && clientX <= r.right
+    && clientY >= r.top
+    && clientY <= r.bottom
+  )
+}
+
+function clearTrail() {
+  if (!cells.value.length && gridKeyToId.size === 0) return
+  gridKeyToId.clear()
+  cells.value = []
 }
 
 function measureCellSize(): number {
@@ -135,6 +161,10 @@ function spawnBrush(pageX: number, pageY: number) {
 }
 
 function paintAtViewport(clientX: number, clientY: number) {
+  if (!isPointerInHero(clientX, clientY)) {
+    clearTrail()
+    return
+  }
   syncScroll()
   const pageX = clientX + window.scrollX
   const pageY = clientY + window.scrollY

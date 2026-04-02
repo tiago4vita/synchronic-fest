@@ -151,7 +151,7 @@ function b2bParts(displayName: string): string[] {
   position: relative;
   z-index: 1;
   overflow: hidden;
-  padding: var(--space-section) var(--space-md) calc(var(--space-3xl) + var(--ticker-height));
+  padding: var(--space-section) var(--space-md) var(--space-3xl);
   background: var(--color-bg-base);
 }
 

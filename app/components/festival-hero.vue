@@ -3,7 +3,11 @@ import { festival } from '~/data/site'
 </script>
 
 <template>
-  <section class="festival-hero" aria-labelledby="hero-title">
+  <section
+    id="site-hero"
+    class="festival-hero"
+    aria-labelledby="hero-title"
+  >
     <ExpressionBackground />
 
     <div class="festival-hero__grain" aria-hidden="true" />
@@ -34,7 +38,7 @@ import { festival } from '~/data/site'
 <style scoped>
 .festival-hero {
   position: relative;
-  min-height: calc(100dvh - var(--ticker-height));
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;

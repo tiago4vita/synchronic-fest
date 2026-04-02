@@ -6,9 +6,15 @@ const props = withDefaults(
   defineProps<{
     /** Announcement strings; defaults to curated fictional feed */
     items?: string[]
+    /** Hero bar overlaps previous section; inline sits flush in document flow */
+    placement?: 'hero' | 'inline'
+    /** Accessible name for the ticker region */
+    ariaLabel?: string
   }>(),
   {
     items: undefined,
+    placement: 'inline',
+    ariaLabel: 'Festival announcements',
   },
 )
 
@@ -24,8 +30,9 @@ const srSummary = computed(() => feed.value.join('. '))
 <template>
   <div
     class="announcement-ticker"
+    :class="{ 'announcement-ticker--hero': placement === 'hero' }"
     role="region"
-    aria-label="Festival announcements"
+    :aria-label="ariaLabel"
   >
     <p class="sr-only">
       Latest announcements: {{ srSummary }}
@@ -50,11 +57,14 @@ const srSummary = computed(() => feed.value.join('. '))
 
 <style scoped>
 .announcement-ticker {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
+  position: relative;
+  z-index: 3;
+  width: 100%;
+}
+
+.announcement-ticker--hero {
+  /* Sit one bar height higher — overlaps hero bottom */
+  margin-top: calc(-1 * var(--ticker-height));
 }
 
 .announcement-ticker__bar {

@@ -21,3 +21,13 @@ export const tickerAnnouncements: string[] = [
   '◆ BACKSTAGE MEET & GREET — LIMITED SLOTS',
   '◆ TICKET TIER UP — IN 3 DAYS',
 ]
+
+/** Ticker strip between gallery and lineup (separate feed). */
+export const lineupTickerAnnouncements: string[] = [
+  '◆ LINEUP SUBJECT TO CHANGE — CHECK THE APP',
+  '◆ MAIN STAGE — DAY 1 OPENS 18:00 · DAY 2 OPENS 17:00',
+  '◆ B2B SETS — SEE GRID FOR PAIRINGS',
+  '◆ NO RE-ENTRY AFTER 02:00 — PLAN AHEAD',
+  '◆ HEARING PROTECTION — FREE AT INFO',
+  '◆ ACCESS INFO — GATE C — PRM ENTRANCE',
+]

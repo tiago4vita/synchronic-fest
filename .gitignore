@@ -13,6 +13,9 @@ node_modules
 logs
 *.log
 
+# Local gallery assets (keep on disk; not tracked)
+app/assets/img/
+
 # Misc
 .DS_Store
 .fleet
