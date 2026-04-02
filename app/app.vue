@@ -2,6 +2,9 @@
   <div class="app-shell">
     <NuxtRouteAnnouncer />
     <NuxtPage />
+    <ClientOnly>
+      <CursorGridTrail />
+    </ClientOnly>
     <div
       class="bitmap-overlay"
       aria-hidden="true"

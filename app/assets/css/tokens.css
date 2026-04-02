@@ -79,6 +79,9 @@
   --bitmap-size: 3px;
   --color-bitmap-dot: rgba(10, 10, 10, 0.14);
   --bitmap-blend-mode: multiply;
+  /* Cursor grid trail */
+  --cursor-trail-cell: 2rem;
+  --cursor-trail-z: 180;
   --motion-fast: 180ms;
   --motion-base: 320ms;
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
