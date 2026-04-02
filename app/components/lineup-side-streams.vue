@@ -96,7 +96,17 @@ const columnsDay2 = computed(() =>
               class="lineup-side-streams__line"
               :class="seg.kind === 'headline' ? 'lineup-side-streams__line--head' : 'lineup-side-streams__line--body'"
             >
-              {{ seg.text }}
+              <span class="lineup-side-streams__stack">
+                <span
+                  class="lineup-side-streams__echo lineup-side-streams__echo--near"
+                  aria-hidden="true"
+                >{{ seg.text }}</span>
+                <span
+                  class="lineup-side-streams__echo lineup-side-streams__echo--far"
+                  aria-hidden="true"
+                >{{ seg.text }}</span>
+                <span class="lineup-side-streams__face">{{ seg.text }}</span>
+              </span>
             </p>
           </div>
         </div>
@@ -125,7 +135,17 @@ const columnsDay2 = computed(() =>
               class="lineup-side-streams__line"
               :class="seg.kind === 'headline' ? 'lineup-side-streams__line--head' : 'lineup-side-streams__line--body'"
             >
-              {{ seg.text }}
+              <span class="lineup-side-streams__stack">
+                <span
+                  class="lineup-side-streams__echo lineup-side-streams__echo--near"
+                  aria-hidden="true"
+                >{{ seg.text }}</span>
+                <span
+                  class="lineup-side-streams__echo lineup-side-streams__echo--far"
+                  aria-hidden="true"
+                >{{ seg.text }}</span>
+                <span class="lineup-side-streams__face">{{ seg.text }}</span>
+              </span>
             </p>
           </div>
         </div>
@@ -220,6 +240,38 @@ const columnsDay2 = computed(() =>
   text-transform: uppercase;
   white-space: nowrap;
   line-height: 1;
+}
+
+/* Same ink as foreground; blurred duplicates read as bitmap-style echo */
+.lineup-side-streams__stack {
+  display: grid;
+  place-items: start center;
+  isolation: isolate;
+}
+
+.lineup-side-streams__stack > * {
+  grid-area: 1 / 1;
+}
+
+.lineup-side-streams__echo {
+  color: inherit;
+  pointer-events: none;
+}
+
+.lineup-side-streams__echo--near {
+  filter: blur(2px);
+  opacity: 0.4;
+}
+
+.lineup-side-streams__echo--far {
+  filter: blur(4.5px);
+  opacity: 0.34;
+  transform: translate(-2px, 8px);
+}
+
+.lineup-side-streams__face {
+  position: relative;
+  z-index: 1;
 }
 
 /* Size contrast only — lines stack with gap, no overlap in the same column */

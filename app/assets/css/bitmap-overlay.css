@@ -1,0 +1,32 @@
+/**
+ * Full-viewport halftone-style bitmap — sits above page paint, below nothing interactive.
+ * Tuned for the light base theme; tokens in tokens.css.
+ */
+
+.bitmap-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+  opacity: var(--bitmap-opacity);
+  mix-blend-mode: var(--bitmap-blend-mode);
+  background-color: transparent;
+  background-image: radial-gradient(
+    circle at center,
+    var(--color-bitmap-dot) 0.55px,
+    transparent 0.65px
+  );
+  background-size: var(--bitmap-size) var(--bitmap-size);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bitmap-overlay {
+    opacity: calc(var(--bitmap-opacity) * 0.65);
+  }
+}
+
+@media (prefers-contrast: more) {
+  .bitmap-overlay {
+    opacity: 0.18;
+  }
+}

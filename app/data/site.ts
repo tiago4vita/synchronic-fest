@@ -6,7 +6,7 @@ export const festival = {
   name: 'SIGNAL',
   nameSuffix: 'FEST',
   tagline: 'Underground electronic · 2026',
-  dates: '11 — 13 July',
+  dates: '20 — 21 November',
   location: 'Warehouse District',
   city: 'Berlin',
 } as const

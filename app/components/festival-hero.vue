@@ -82,7 +82,7 @@ import { festival } from '~/data/site'
 }
 
 .festival-hero__eyebrow-accent {
-  color: var(--color-hero-accent);
+  color: var(--color-accent-magenta);
 }
 
 .festival-hero__eyebrow-muted {

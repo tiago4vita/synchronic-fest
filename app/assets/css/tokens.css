@@ -13,10 +13,10 @@
   --color-fg-on-accent: #0a0a0a;
 
   /* Accents (neon, high saturation) */
-  --color-accent-primary: #6ae800;
-  --color-accent-magenta: #d400ff;
-  --color-accent-cyan: #00b8d4;
-  --color-accent-yellow: #e8e000;
+  --color-accent-primary: #75CA14;
+  --color-accent-magenta: #C60BEC;
+  --color-accent-cyan: #007b6b;
+  --color-accent-yellow: #feca00;
 
   /* Semantic hooks */
   --color-ticker-bg: #0a0a0a;
@@ -26,10 +26,10 @@
   --color-lineup-b2b: var(--color-accent-primary);
 
   /* Lineup side rails — solid neon contrast (no translucent type on rails) */
-  --color-lineup-rail-day1-bg: #e012e0;
-  --color-lineup-rail-day1-fg: #ff0000;
-  --color-lineup-rail-day2-bg: #c8ff00;
-  --color-lineup-rail-day2-fg: #000000;
+  --color-lineup-rail-day1-bg: #C60BEC;
+  --color-lineup-rail-day1-fg: #fa021d;
+  --color-lineup-rail-day2-bg: #75CA14;
+  --color-lineup-rail-day2-fg: #007b6b;
 
   /* Decorative multilingual layer (Mechatok-style wash) */
   --color-expression-ink: rgba(10, 10, 10, 0.07);
@@ -74,6 +74,11 @@
 
   /* ——— Effects ——— */
   --grain-opacity: 0.06;
+  /* Global halftone / bitmap screen (fixed overlay) */
+  --bitmap-opacity: 0.42;
+  --bitmap-size: 3px;
+  --color-bitmap-dot: rgba(10, 10, 10, 0.14);
+  --bitmap-blend-mode: multiply;
   --motion-fast: 180ms;
   --motion-base: 320ms;
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);

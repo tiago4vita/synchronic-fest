@@ -2,6 +2,10 @@
   <div class="app-shell">
     <NuxtRouteAnnouncer />
     <NuxtPage />
+    <div
+      class="bitmap-overlay"
+      aria-hidden="true"
+    />
   </div>
 </template>
 
