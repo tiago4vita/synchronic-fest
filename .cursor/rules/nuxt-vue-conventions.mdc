@@ -1,0 +1,30 @@
+---
+description: Nuxt 4 and Vue 3 patterns for this codebase
+globs: "**/*.{vue,ts}"
+alwaysApply: false
+---
+
+# Nuxt & Vue conventions
+
+## Components & scripts
+
+- Use **Vue 3 Composition API** with **`<script setup lang="ts">`** for new SFCs unless the file already uses Options API (then stay consistent within that file).
+- Prefer **`defineProps` / `defineEmits`** with explicit types; avoid `any` unless bridging untyped third-party code.
+
+## Nuxt specifics
+
+- Use **auto-imports** where Nuxt provides them (`useRoute`, `useRouter`, `navigateTo`, composables in `composables/`).
+- Prefer **file-based routing** under `pages/` when adding routes; use `app.vue` only for true global shell behavior.
+- **Static deploy** is a project goal: prefer **`nuxt generate`**-friendly patterns; avoid accidental server-only APIs in client paths unless wrapped for build.
+- Use **`useAsyncData` / `useFetch`** for server-aware data fetching; avoid ad-hoc `fetch` in `setup` without considering SSR and caching.
+- **Creative libs** (audio, canvas, WebGL, etc.): wrap in **`<ClientOnly>`** or `onMounted` when they touch `window` / Web APIs; document any SSR exceptions.
+
+## Styling
+
+- **Design tokens** live in **`app/assets/css/tokens.css`** — use **`var(--…)`** for colors, spacing, typography, motion, and radii; avoid one-off hex values in components.
+- No Tailwind unless added later; **scoped CSS** in SFCs is fine. Keep class names and structure consistent with neighboring components.
+
+## Quality bar
+
+- Types should reflect runtime shapes (DTOs, page props, event payloads).
+- Split components **before** they exceed ~150 lines of template + script, per project preference.

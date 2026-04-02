@@ -1,0 +1,57 @@
+---
+description: Product goals, audience, content language, stack, and delivery constraints
+alwaysApply: true
+---
+
+# Project context
+
+## What this is
+
+- **Portfolio purpose:** Show **creativity, innovation, front-end craft, design, and rich coding** to **potential clients** — focus on **freelance or periodic work** (not a generic tutorial site).
+- **In-universe product:** A **credible fictional festival brand** with a **real festival landing experience** (not a thin “portfolio frame” site).
+- **Planning:** **FigJam** moodboards and structure are the reference for vibe and modules; repo work should align with that direction.
+
+## Language
+
+- **Public UI and all user-facing copy:** **English** (even if FigJam notes are PT-BR).
+- **Decorative texts:** **German, korean, portuguese, japanese, arab** (handle different charsets).
+- **Code comments and agent ↔ dev chat:** English unless the user switches.
+
+## Must-have experience (from brief + FigJam)
+
+- **Hero** — strong first read, typographic / image-led, room for **grain, tint, glitch-adjacent** treatments.
+- **TV news–style ticker / marquee** — horizontal **scrolling announcements** for **party / rave news** (repeatable strip, bold type, configurable accent on dark bar is on-brand).
+- **Lineup** — **fake but curated** (consistent names, genres, times; treat like production content).
+- **Motion & depth:** **Full scene–level section changes**, **dynamic text animations**, **mouse-driven layout** where **pointer movement rearranges or drives text** on screen (plus optional **mouse-trail character** effects from the board).
+- **Audio** — part of the experience (respect autoplay policies; offer clear user control).
+- **Optional later (FigJam):** **Three.js**–style **3D graffiti / exhibition panels** (“galeria exposição”) — add when implementing that milestone, not by default in every task.
+
+## Visual & creative direction
+
+- See **`.cursor/rules/design-identity.mdc`** for aesthetic keywords, palette, and references (maximal type, B&W + neon accents, urban/editorial).
+
+## Stack & libraries
+
+- **Core:** **Nuxt 4**, **Vue 3**, **TypeScript**.
+- **Extra tech:** Any dependency is allowed when it serves the build — **no blanket ban** on new tools (Three.js, extra animation libs, font pipelines, etc.); keep integrations **bounded** and **documented in code** when non-obvious.
+- **Showcase libs (use when they earn their place):**
+  - **`@fiddle-digital/string-tune`** — music / string / tuning interactions.
+  - **[Pretext.js](https://pretextjs.dev/)** (`@chenglou/pretext`) — layout/measurement **without DOM measurement thrashing**; `prepare()` uses **Canvas** → **client-only** (`<ClientOnly>` / `onMounted`) under SSR.
+  - **Three.js** — only for the **3D graffiti / panel** idea from FigJam; load in a bounded client-only island.
+- **Not the default stack:** React, Next.js, Tailwind — only if explicitly introduced to the repo.
+
+## Performance & shipping
+
+- **Target:** **High-performance devices** first (desktop / strong phones); still avoid obvious jank and layout thrashing.
+- **Deploy:** **Static** (`nuxt generate` / static hosting) is **desired** — prefer patterns compatible with **SSG**; heavy interactivity lives in **client islands** without breaking the static build.
+
+## Principles
+
+- Prefer **small, targeted changes**; avoid unrelated refactors.
+- **Match** existing patterns in the repo; **reuse** composables and components.
+- Do **not** add unsolicited README/docs unless the task is documentation.
+- **Accessibility:** semantic HTML, focus, **respect `prefers-reduced-motion`** where motion is decorative; don’t ship motion-only critical info.
+
+## When unsure
+
+- Re-read **design-identity** + this file; check **`nuxt.config.ts`** and **`app/`** / **`pages/`** before inventing new structure.

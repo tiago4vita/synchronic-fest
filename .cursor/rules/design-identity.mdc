@@ -1,0 +1,34 @@
+---
+description: Visual language, motion, and FigJam-aligned UI cues for the fictional festival site
+alwaysApply: true
+---
+
+# Design identity (FigJam + brief)
+
+## Positioning
+
+- **Look:** **Modern, commercial, innovative** — editorial/fashion energy (bold art direction), not a default Bootstrap landing page.
+- **Keywords:** **Typographic**, **maximal**, **bold**, **multicultural**, **well-designed**, **young**, **cool**, **urban**, **digital**.
+- **Palette:** **Black & white** foundation + **small set of vibrant accents** (neon **acid green** is a lead accent in refs; also electric **magenta / cyan / yellow** as needed). High **contrast**; occasional **full-bleed** accent blocks (e.g. orange/green bars) like rave posters and club UI.
+
+## Typography & layout
+
+- **Heavy sans-serif** grotesk / neo-grotesk feel; type as **graphic object** — **overlap**, **stack**, **rotate**, **huge headlines**, not only body copy.
+- **Grid-aware** and **asymmetric** layouts OK; **grain / noise**, **scanlines**, **glitch lines**, **terminal/code** motifs are on-brand when used with intent.
+- **References (mood, not to copy assets):** Mechatok — *Expression On Your Face* (cyber-urban, barcode/UI texture); **[i-D](https://i-d.co/)**-style **editorial** boldness and youth culture framing.
+
+## Signature components (build toward these)
+
+1. **Hero** — photographic or typographic dominance; **tinted** B&W + **accent** lasers or UI chrome; optional **text-mask** or **reflection** effects.
+2. **News ticker / marquee** — **horizontal** strip, **looping rave/party headlines** (icons OK), feels like **broadcast / club flyer** energy.
+3. **Interactive type zones** — **pointer-driven** rearrangement or **physics-like** text behavior; optional **mouse-trail characters** (+, o, x, <, >, etc.) in small boxes or glyphs.
+4. **Pretext-driven blocks** — dense or **particle-like** typographic fields where **layout stays fast** (measure with Pretext, animate deliberately).
+5. **3D graffiti panels** (later) — **exhibition** walkthrough vibe; **Three.js**-style scene, **client-only**.
+
+## Brand motif (optional)
+
+- FigJam explores a **geometric mark** (e.g. **(▲)** / arrow-in-circle). Use **consistently** if adopted: grid repeats, watermark, loader, favicon.
+
+## Motion
+
+- **Section transitions** can be **full-scene** (not only micro-hover). Pair motion with **reduced-motion** fallbacks for decorative effects.
