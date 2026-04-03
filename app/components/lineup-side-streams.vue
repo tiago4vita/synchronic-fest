@@ -5,24 +5,53 @@ import { lineupDays } from '~/data/lineup'
 type StreamSeg = { kind: 'headline' | 'body'; text: string }
 
 const phrasesDay1 = [
-  'signal cuts through',
-  'faces in the flood',
-  'alone under strobes',
-  'the room forgets time',
-  'bass as architecture',
-  'they watch from the rail',
-  'ノイズの奥',
+  'stay tuned',
+  'weird sync',
+  'it’s time to rave',
+  'tec tec tec',
+  'fuck AI',
+  'legalize nuclear weapons',
+  'do u got a lighter?',
+  'lorem ipsum bro idk',
+  'エクスタシーとは何ですか',
 ]
 
 const phrasesDay2 = [
-  'green flash flood',
-  'warehouse cathedral',
-  'til dawn we rise',
-  'another frequency',
-  'no ceiling only fog',
-  'pulse in the floor',
+  'i sold my soul for this lineup',
+  '@@@@@@@',
+  'online irl',
+  'bolichito',
+  'soundsystem é coisa séria',
+  "don't shazam",
   '다음 트랙',
 ]
+
+/** Middle dot only between adjacent artist names (not around phrases). */
+const ARTIST_SEP = '\u00b7'
+
+function mergeHeadlineRuns(segments: StreamSeg[]): StreamSeg[] {
+  const out: StreamSeg[] = []
+  const run: string[] = []
+  const flush = () => {
+    if (!run.length) return
+    out.push({
+      kind: 'headline',
+      text: run.join(` ${ARTIST_SEP} `),
+    })
+    run.length = 0
+  }
+  for (const s of segments) {
+    if (s.kind === 'headline') {
+      run.push(s.text)
+    }
+    else {
+      flush()
+      out.push(s)
+    }
+  }
+  flush()
+  return out
+}
 
 function buildSegments(
   names: string[],
@@ -30,21 +59,23 @@ function buildSegments(
   columnSeed: number,
   length = 28,
 ): StreamSeg[] {
-  const out: StreamSeg[] = []
+  const raw: StreamSeg[] = []
   let ni = columnSeed % Math.max(names.length, 1)
   let pi = (columnSeed * 2) % Math.max(phrases.length, 1)
+  /* Two artist lines, then one phrase — merged into "A · B" + phrase */
   for (let k = 0; k < length; k++) {
-    if (k % 3 === 1) {
+    if (k % 3 === 2) {
       const phrase = phrases[pi % phrases.length] ?? ''
-      out.push({ kind: 'body', text: phrase })
+      raw.push({ kind: 'body', text: phrase })
       pi++
-    } else {
+    }
+    else {
       const name = names[ni % names.length] ?? ''
-      out.push({ kind: 'headline', text: name })
+      raw.push({ kind: 'headline', text: name })
       ni++
     }
   }
-  return out
+  return mergeHeadlineRuns(raw)
 }
 
 const day1Names = computed(() => lineupDays[0]!.rows.map((r) => r.displayName))

@@ -3,7 +3,7 @@ import ExpressionBackground from '~/components/expression-background.vue'
 import LineupSideStreams from '~/components/lineup-side-streams.vue'
 import { lineupDays, ordinalSuffix } from '~/data/lineup'
 
-/** Split on b2b (case-insensitive); re-insert as acid-green annotations in template */
+/** Split on b2b (case-insensitive); re-insert with primary accent (magenta) in template */
 function b2bParts(displayName: string): string[] {
   return displayName.split(/\s+b2b\s+/i)
 }
@@ -172,8 +172,8 @@ function b2bParts(displayName: string): string[] {
   z-index: 1;
   pointer-events: none;
   background-image:
-    linear-gradient(to right, var(--color-border-subtle) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--color-border-subtle) 1px, transparent 1px);
+    linear-gradient(to right, var(--color-ui-grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-ui-grid-line) 1px, transparent 1px);
   background-size: 4rem 4rem;
   opacity: 0.32;
   /* Taller ellipse than hero so the grid reads through the full lineup block */
@@ -230,6 +230,7 @@ function b2bParts(displayName: string): string[] {
 
 .lineup__th {
   padding: 0 0 var(--space-xs);
+  font-family: var(--font-label);
   font-weight: var(--font-weight-semibold);
   text-align: left;
   vertical-align: bottom;
@@ -238,6 +239,7 @@ function b2bParts(displayName: string): string[] {
 }
 
 .lineup__th--label {
+  font-family: var(--font-label);
   font-size: 0.65em;
   letter-spacing: 0.14em;
 }
@@ -245,7 +247,7 @@ function b2bParts(displayName: string): string[] {
 /* Wide column gaps — engineered grid (order: artist | day | month | date | from | stage) */
 .lineup__th--artist-head,
 .lineup__cell--artist {
-  width: 36%;
+  width: fit-content;
   padding-right: clamp(0.75rem, 2vw, 1.75rem);
 }
 
@@ -283,6 +285,14 @@ function b2bParts(displayName: string): string[] {
   vertical-align: top;
 }
 
+.lineup__cell--day,
+.lineup__cell--month,
+.lineup__cell--date,
+.lineup__cell--from,
+.lineup__cell--stage {
+  font-family: var(--font-label);
+}
+
 .lineup__cell {
   padding: var(--space-xs) clamp(0.5rem, 1.5vw, 1rem) var(--space-xs) 0;
   vertical-align: top;
@@ -295,6 +305,7 @@ function b2bParts(displayName: string): string[] {
 }
 
 .lineup__ordinal {
+  font-family: var(--font-label);
   font-size: 0.65em;
   font-weight: var(--font-weight-bold);
   line-height: 0;
@@ -311,6 +322,7 @@ function b2bParts(displayName: string): string[] {
 
 .lineup__b2b {
   display: inline;
+  font-family: var(--font-label);
   font-size: 0.52em;
   font-weight: var(--font-weight-semibold);
   letter-spacing: 0.08em;
@@ -322,12 +334,13 @@ function b2bParts(displayName: string): string[] {
 .lineup__note {
   display: inline;
   margin-left: 0.35em;
+  font-family: var(--font-label);
   font-size: clamp(0.65rem, 1.15vw, 0.8rem);
   font-weight: var(--font-weight-semibold);
   letter-spacing: 0.06em;
   line-height: 1.15;
   text-transform: uppercase;
-  color: var(--color-accent-magenta);
+  color: var(--color-ui-annotation);
 }
 
 @media (prefers-reduced-motion: reduce) {

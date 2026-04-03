@@ -93,7 +93,7 @@ const srSummary = computed(() => feed.value.join('. '))
   display: flex;
   width: max-content;
   animation: ticker-marquee var(--ticker-duration) linear infinite;
-  font-family: var(--font-display);
+  font-family: var(--font-label);
   font-size: var(--text-ticker);
   font-weight: var(--font-weight-semibold);
   letter-spacing: 0.04em;

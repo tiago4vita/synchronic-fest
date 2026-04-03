@@ -1,0 +1,4 @@
+/**
+ * Self-hosted display face (editorial). Latin via variable WOFF2; CJK/Arabic use Noto from Google Fonts in nuxt.config.
+ */
+@import "@fontsource-variable/zalando-sans-expanded";

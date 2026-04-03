@@ -21,9 +21,9 @@ const images = galleryImages
 
 /** Three beats tied to scroll thirds — edit copy here. */
 const GALLERY_CAPTIONS: readonly [string, string, string] = [
-  'Walls packed, cables tangled, sweat and strobe — a thousand bodies waiting for the drop to reset the room.',
-  'Laser lines tear through haze and motion; every photo is two beats behind, a memory echo in the dark.',
-  'Freeze the energy. This moment leads you to the roster; the lineup lives in the next chamber.',
+  'Berlin concrete, cables everywhere — bodies stacked to the ceiling. If you know, you know.',
+  'Strobe, haze, no apologies. Half these shots are already two beats behind real life.',
+  'Stay tuned: what you scrolled past was the warm-up. The roster hits next.',
 ]
 
 const activeCaptionIndex = computed(() => {
@@ -35,11 +35,11 @@ const activeCaptionIndex = computed(() => {
 
 const activeCaption = computed(() => GALLERY_CAPTIONS[activeCaptionIndex.value]!)
 
-/** Scroll phase 0 / 1 / 2 → acid green, magenta, cyan */
+/** Scroll phase: magenta lead → acid channel → digital chrome */
 const CAPTION_ACCENT_VARS = [
-  'var(--color-accent-magenta)',
+  'var(--color-accent-primary)',
+  'var(--color-accent-acid)',
   'var(--color-accent-cyan)',
-  'var(--color-accent-primary)'
 ] as const
 
 const captionAccentColor = computed(
@@ -345,7 +345,7 @@ onUnmounted(() => {
   text-align: center;
   text-transform: uppercase;
   text-wrap: balance;
-  transition: color var(--motion-base) var(--ease-out-expo);
+  transition: color var(--motion-base) var(--ease-sharp);
   will-change: auto;
 }
 
@@ -355,8 +355,8 @@ onUnmounted(() => {
 .rave-cap-back-enter-active,
 .rave-cap-back-leave-active {
   transition:
-    transform 0.42s var(--ease-out-expo),
-    opacity 0.36s var(--ease-out-expo);
+    transform 0.28s var(--ease-sharp),
+    opacity 0.22s var(--ease-sharp);
 }
 
 .rave-cap-fwd-enter-from {
@@ -466,7 +466,7 @@ onUnmounted(() => {
   .rave-cap-fwd-leave-active,
   .rave-cap-back-enter-active,
   .rave-cap-back-leave-active {
-    transition: opacity var(--motion-fast) var(--ease-out-expo);
+    transition: opacity var(--motion-fast) var(--ease-sharp);
   }
 
   .rave-cap-fwd-enter-from,

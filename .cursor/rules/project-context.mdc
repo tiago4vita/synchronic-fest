@@ -8,8 +8,18 @@ alwaysApply: true
 ## What this is
 
 - **Portfolio purpose:** Show **creativity, innovation, front-end craft, design, and rich coding** to **potential clients** — focus on **freelance or periodic work** (not a generic tutorial site).
-- **In-universe product:** A **credible fictional festival brand** with a **real festival landing experience** (not a thin “portfolio frame” site).
+- **In-universe product:** A **credible fictional festival brand** (**Synchronic**) with a **real festival landing experience** (not a thin “portfolio frame” site).
 - **Planning:** **FigJam** moodboards and structure are the reference for vibe and modules; repo work should align with that direction.
+
+## Audience & voice
+
+- **Primary viewers:** **Ravers**, **artists**, **creatives** — with top focus **21–35 ravers** and **electronic music nerds** (depth over casual browsing).
+- **English UI copy:** **Sassy** — confident, a little irreverent, not corporate or timid.
+- **Avoid at all cost:** e.g. **lock in**, **experience**, **immersive** — avoid commercial buzzwords.
+
+## Reference benchmark (not for copying)
+
+- **Bar for craft:** **[Nameless Festival](https://namelessfestival.it)** — aim for comparable **production quality** and **festival-site clarity**; **do not** lift layout, copy, assets, or distinctive brand elements.
 
 ## Language
 

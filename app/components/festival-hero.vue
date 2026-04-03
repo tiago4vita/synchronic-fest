@@ -62,8 +62,8 @@ import { festival } from '~/data/site'
   z-index: 1;
   pointer-events: none;
   background-image:
-    linear-gradient(to right, var(--color-border-subtle) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--color-border-subtle) 1px, transparent 1px);
+    linear-gradient(to right, var(--color-ui-grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-ui-grid-line) 1px, transparent 1px);
   background-size: 4rem 4rem;
   opacity: 0.35;
   mask-image: radial-gradient(ellipse 80% 70% at 50% 45%, black 20%, transparent 70%);
@@ -79,14 +79,20 @@ import { festival } from '~/data/site'
 
 .festival-hero__eyebrow {
   margin: 0 0 var(--space-lg);
+  font-family: var(--font-label);
   font-size: var(--text-label);
   font-weight: var(--font-weight-medium);
   letter-spacing: var(--letter-spacing-wide);
   text-transform: uppercase;
 }
 
+.festival-hero__eyebrow-accent,
+.festival-hero__eyebrow-muted {
+  font-family: var(--font-label);
+}
+
 .festival-hero__eyebrow-accent {
-  color: var(--color-accent-magenta);
+  color: var(--color-hero-eyebrow-signal);
 }
 
 .festival-hero__eyebrow-muted {
@@ -113,7 +119,7 @@ import { festival } from '~/data/site'
 }
 
 .festival-hero__suffix {
-  color: var(--color-fg-on-accent);
+  color: var(--color-fg-on-hero-accent);
   background: var(--color-hero-accent);
   padding: 0 0.12em;
   -webkit-box-decoration-break: clone;
@@ -122,8 +128,9 @@ import { festival } from '~/data/site'
 
 .festival-hero__tagline {
   margin: var(--space-xl) 0 0;
+  font-family: var(--font-body);
   font-size: var(--text-hero-lg);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-regular);
   color: var(--color-fg-muted);
   max-width: 28ch;
   margin-left: auto;
@@ -133,6 +140,7 @@ import { festival } from '~/data/site'
 
 .festival-hero__meta {
   margin: var(--space-lg) 0 0;
+  font-family: var(--font-label);
   font-size: var(--text-label);
   letter-spacing: var(--letter-spacing-wide);
   text-transform: uppercase;

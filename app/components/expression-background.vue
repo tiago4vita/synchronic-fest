@@ -37,8 +37,22 @@ const stream2 = computed(() => buildExpressionStream(2))
     <!-- Extra dense layer (offset vertical position) -->
     <div class="expression-bg__band expression-bg__band--d">
       <div class="expression-bg__track expression-bg__track--right expression-bg__track--mid">
+        <span class="expression-bg__text expression-bg__text--md">{{ stream2 }}</span>
+        <span class="expression-bg__text expression-bg__text--md">{{ stream2 }}</span>
+      </div>
+    </div>
+
+    <div class="expression-bg__band expression-bg__band--e">
+      <div class="expression-bg__track expression-bg__track--left expression-bg__track--fast">
         <span class="expression-bg__text expression-bg__text--md">{{ stream0 }}</span>
         <span class="expression-bg__text expression-bg__text--md">{{ stream0 }}</span>
+      </div>
+    </div>
+
+    <div class="expression-bg__band expression-bg__band--f">
+      <div class="expression-bg__track expression-bg__track--right expression-bg__track--slow">
+        <span class="expression-bg__text expression-bg__text--sm">{{ stream1 }}</span>
+        <span class="expression-bg__text expression-bg__text--sm">{{ stream1 }}</span>
       </div>
     </div>
 
@@ -51,11 +65,17 @@ const stream2 = computed(() => buildExpressionStream(2))
         <p class="expression-bg__pillar-chunk">
           信号はノイズを切り裂く。　顔は最後のインターフェースだ。　光が曲がる場所で出会う。
         </p>
+        <p class="expression-bg__pillar-chunk">
+          信号はノイズを切り裂く。　顔は最後のインターフェースだ。　光が曲がる場所で出会う。
+        </p>
       </div>
     </div>
 
     <div class="expression-bg__pillar expression-bg__pillar--right">
       <div class="expression-bg__pillar-scroll expression-bg__pillar-scroll--down">
+        <p class="expression-bg__pillar-chunk">
+          信号はノイズを切り裂く。　顔は最後のインターフェースだ。　光が曲がる場所で出会う。
+        </p>
         <p class="expression-bg__pillar-chunk">
           信号はノイズを切り裂く。　顔は最後のインターフェースだ。　光が曲がる場所で出会う。
         </p>
@@ -79,13 +99,13 @@ const stream2 = computed(() => buildExpressionStream(2))
 .expression-bg__scanlines {
   position: absolute;
   inset: 0;
-  opacity: 0.4;
+  opacity: 0.52;
   background: repeating-linear-gradient(
     0deg,
     transparent,
-    transparent 2px,
-    rgba(0, 0, 0, 0.03) 2px,
-    rgba(0, 0, 0, 0.03) 3px
+    transparent 1px,
+    rgba(0, 0, 0, 0.045) 1px,
+    rgba(0, 0, 0, 0.045) 2px
   );
   mix-blend-mode: multiply;
 }
@@ -100,24 +120,36 @@ const stream2 = computed(() => buildExpressionStream(2))
 }
 
 .expression-bg__band--a {
-  top: 8%;
+  top: 5%;
   transform: rotate(-1.5deg);
 }
 
 .expression-bg__band--b {
-  top: 38%;
+  top: 24%;
   transform: rotate(0.8deg);
 }
 
 .expression-bg__band--c {
-  top: 62%;
+  top: 42%;
   transform: rotate(-0.6deg);
 }
 
 .expression-bg__band--d {
-  top: 78%;
+  top: 58%;
   transform: rotate(1.2deg);
-  opacity: 0.85;
+  opacity: 0.95;
+}
+
+.expression-bg__band--e {
+  top: 74%;
+  transform: rotate(-0.35deg);
+  opacity: 0.92;
+}
+
+.expression-bg__band--f {
+  top: 88%;
+  transform: rotate(0.55deg);
+  opacity: 0.88;
 }
 
 .expression-bg__track {
@@ -126,7 +158,7 @@ const stream2 = computed(() => buildExpressionStream(2))
   font-family: var(--font-expression);
   font-weight: var(--font-weight-bold);
   letter-spacing: -0.02em;
-  line-height: 1.05;
+  line-height: 1;
   color: var(--color-expression-ink);
   will-change: transform;
 }
@@ -147,8 +179,12 @@ const stream2 = computed(() => buildExpressionStream(2))
   animation-duration: var(--expression-duration-mid);
 }
 
+.expression-bg__track--slow {
+  animation-duration: var(--expression-duration-slow);
+}
+
 .expression-bg__text {
-  padding-right: var(--space-3xl);
+  padding-right: var(--space-lg);
 }
 
 .expression-bg__text--xl {
@@ -161,7 +197,7 @@ const stream2 = computed(() => buildExpressionStream(2))
 }
 
 .expression-bg__text--sm {
-  font-size: clamp(0.85rem, 2vw, 1.1rem);
+  font-size: clamp(0.9rem, 2.15vw, 1.2rem);
   font-weight: var(--font-weight-semibold);
 }
 
@@ -169,9 +205,9 @@ const stream2 = computed(() => buildExpressionStream(2))
   position: absolute;
   top: 0;
   bottom: 0;
-  width: clamp(2rem, 5vw, 3.25rem);
+  width: clamp(2.35rem, 5.75vw, 3.85rem);
   overflow: hidden;
-  opacity: 0.5;
+  opacity: 0.68;
 }
 
 .expression-bg__pillar--left {
@@ -199,12 +235,12 @@ const stream2 = computed(() => buildExpressionStream(2))
   writing-mode: vertical-rl;
   text-orientation: mixed;
   font-family: var(--font-expression);
-  font-size: clamp(0.65rem, 1.25vw, 0.9rem);
+  font-size: clamp(0.72rem, 1.45vw, 1rem);
   font-weight: var(--font-weight-bold);
-  letter-spacing: 0.18em;
-  line-height: 2;
+  letter-spacing: 0.16em;
+  line-height: 1.55;
   color: var(--color-expression-ink-strong);
-  padding-bottom: var(--space-2xl);
+  padding-bottom: var(--space-xl);
 }
 
 @keyframes expr-slide-left {
@@ -230,16 +266,17 @@ const stream2 = computed(() => buildExpressionStream(2))
     transform: translateY(0);
   }
   to {
-    transform: translateY(-50%);
+    /* Three pillar chunks → step by one third for a seamless loop */
+    transform: translateY(-33.333333%);
   }
 }
 
 @keyframes expr-pillar-down {
   from {
-    transform: translateY(-50%);
+    transform: translateY(-66.666666%);
   }
   to {
-    transform: translateY(0);
+    transform: translateY(-33.333333%);
   }
 }
 

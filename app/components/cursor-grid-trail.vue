@@ -322,8 +322,8 @@ onUnmounted(() => {
   justify-content: center;
   margin: 0;
   padding: 0;
-  background: var(--color-fg-primary);
-  color: var(--color-bg-elevated);
+  background: var(--color-cursor-trail-cell-bg);
+  color: var(--color-cursor-trail-glyph);
   border: none;
 }
 

@@ -3,17 +3,21 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
 
-  css: ['~/assets/css/tokens.css', '~/assets/css/bitmap-overlay.css'],
+  css: [
+    '~/assets/css/fonts.css',
+    '~/assets/css/tokens.css',
+    '~/assets/css/bitmap-overlay.css',
+  ],
 
   app: {
     head: {
       htmlAttrs: { lang: 'en' },
-      title: 'SIGNAL FEST — Underground electronic',
+      title: 'Synchronic — Underground electronic',
       meta: [
         {
           name: 'description',
           content:
-            'Fictional festival experience — SIGNAL FEST 2026. Portfolio front-end & design.',
+            'Synchronic — fictional festival experience, Berlin. Portfolio front-end & design.',
         },
       ],
       link: [
@@ -25,7 +29,7 @@ export default defineNuxtConfig({
         },
         {
           rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+KR:wght@400;700&family=Space+Grotesk:wght@400;500;600;700&display=swap',
+          href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;700&family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+KR:wght@400;700&display=swap',
         },
       ],
     },

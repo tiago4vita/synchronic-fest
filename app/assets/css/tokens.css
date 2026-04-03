@@ -10,36 +10,59 @@
   --color-fg-primary: #0a0a0a;
   --color-fg-muted: #5c5c5c;
   --color-border-subtle: #e4e4e4;
+  /* Text on yellow / acid fills (dark) */
   --color-fg-on-accent: #0a0a0a;
+  /* Text on magenta hero blocks, ticker chips (light) */
+  --color-fg-on-hero-accent: #f5f5f5;
 
-  /* Accents (neon, high saturation) */
-  --color-accent-primary: #75CA14;
-  --color-accent-magenta: #C60BEC;
+  /*
+   * Raw accent inks — “primary” = brand lead (magenta); acid/yellow/cyan = supporting only.
+   */
+  --color-accent-magenta: #c60bec;
+  --color-accent-acid: #75ca14;
   --color-accent-cyan: #007b6b;
   --color-accent-yellow: #feca00;
+  --color-accent-primary: var(--color-accent-magenta);
 
-  /* Semantic hooks */
+  /* Primary signal — hero suffix, ticker rule, eyebrows, b2b markers (magenta-led) */
   --color-ticker-bg: #0a0a0a;
   --color-ticker-fg: #f5f5f5;
   --color-ticker-accent: var(--color-accent-primary);
   --color-hero-accent: var(--color-accent-primary);
+  --color-hero-eyebrow-signal: var(--color-accent-primary);
   --color-lineup-b2b: var(--color-accent-primary);
 
-  /* Lineup side rails — solid neon contrast (no translucent type on rails) */
-  --color-lineup-rail-day1-bg: #C60BEC;
-  --color-lineup-rail-day1-fg: #fa021d;
-  --color-lineup-rail-day2-bg: #75CA14;
-  --color-lineup-rail-day2-fg: #007b6b;
+  /*
+   * Lineup day rails — day 1 = magenta (brand), day 2 = yellow (contrast channel). One rail per side.
+   */
+  --color-lineup-rail-day1-bg: var(--color-accent-magenta);
+  --color-lineup-rail-day1-fg: #f5f5f5;
+  --color-lineup-rail-day2-bg: var(--color-accent-yellow);
+  --color-lineup-rail-day2-fg: #0a0a0a;
+
+  /*
+   * Tertiary “cold” digital — thin UI chrome, trails, subtle texture (not big hero fills).
+   */
+  --color-ui-grid-line: color-mix(in srgb, var(--color-accent-cyan) 24%, var(--color-border-subtle));
+  --color-ui-annotation: var(--color-accent-cyan);
+  --color-cursor-trail-cell-bg: color-mix(in srgb, var(--color-accent-cyan) 72%, #0a0a0a);
+  /* Light neutral; slight warmth so it still reads on cyan-tinted cells */
+  --color-cursor-trail-glyph: #f2f0ff;
+  --color-bitmap-dot: color-mix(in srgb, var(--color-accent-cyan) 32%, rgba(10, 10, 10, 0.13));
 
   /* Decorative multilingual layer (Mechatok-style wash) */
-  --color-expression-ink: rgba(10, 10, 10, 0.07);
-  --color-expression-ink-strong: rgba(10, 10, 10, 0.12);
-  --font-expression: "Space Grotesk", "Noto Sans JP", "Noto Sans KR", "Noto Sans Arabic",
+  --color-expression-ink: rgba(10, 10, 10, 0.11);
+  --color-expression-ink-strong: rgba(10, 10, 10, 0.19);
+  /* Decorative multilingual wash — Inter + Noto for JP/KR/Arabic glyphs */
+  --font-expression: "Inter", "Noto Sans JP", "Noto Sans KR", "Noto Sans Arabic",
     system-ui, sans-serif;
 
-  /* ——— Typography ——— */
-  --font-display: "Space Grotesk", system-ui, sans-serif;
-  --font-body: var(--font-display);
+  /* ——— Typography (editorial-first, max 3 families) ——— */
+  /* Display: big headlines, lineup names, photo overlays — Zalando Sans Expanded Variable (self-hosted) */
+  --font-display: "Zalando Sans Expanded Variable", system-ui, sans-serif;
+  /* Body + UI: paragraphs, eyebrows, ticker, table meta, labels */
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-label: "Inter", system-ui, sans-serif;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
@@ -49,8 +72,8 @@
   --text-hero-lg: clamp(1.125rem, 2.5vw, 1.5rem);
   --text-label: 0.75rem;
   --text-ticker: clamp(0.9rem, 1.5vw, 1.05rem);
-  --text-expression-xl: clamp(2.5rem, 8vw, 5rem);
-  --text-expression-md: clamp(1rem, 3vw, 1.75rem);
+  --text-expression-xl: clamp(2.65rem, 8.5vw, 5.25rem);
+  --text-expression-md: clamp(1.05rem, 3.1vw, 1.85rem);
   --text-lineup-name: clamp(1.5rem, 4vw, 2.75rem);
   /* Long set / special set — larger than caption */
   --text-lineup-note: clamp(0.95rem, 1.65vw, 1.125rem);
@@ -77,23 +100,25 @@
   /* Global halftone / bitmap screen (fixed overlay) */
   --bitmap-opacity: 0.42;
   --bitmap-size: 3px;
-  --color-bitmap-dot: rgba(10, 10, 10, 0.14);
+  /* --color-bitmap-dot defined above (tertiary cyan tint) */
   --bitmap-blend-mode: multiply;
   /* Cursor grid trail */
   --cursor-trail-cell: 2rem;
   --cursor-trail-z: 180;
-  --motion-fast: 180ms;
-  --motion-base: 320ms;
+  /* Sharp / digital — quick UI and caption cuts (see design-identity motion) */
+  --motion-fast: 140ms;
+  --motion-base: 240ms;
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-sharp: cubic-bezier(0.22, 1, 0.32, 1);
 
-  /* Ticker (override in prefers-reduced-motion) */
-  --ticker-duration: 45s;
+  /* Ticker — slightly brisk scroll vs prior (energetic, still readable) */
+  --ticker-duration: 36s;
 
-  /* Expression marquees */
-  --expression-duration-slow: 85s;
-  --expression-duration-mid: 55s;
-  --expression-duration-fast: 38s;
-  --expression-duration-vertical: 70s;
+  /* Expression marquees — a touch faster on mid/fast lanes */
+  --expression-duration-slow: 62s;
+  --expression-duration-mid: 38s;
+  --expression-duration-fast: 26s;
+  --expression-duration-vertical: 54s;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,33 +1,33 @@
 /**
- * Curated fictional festival copy (English). Tune dates / city when the narrative settles.
+ * Curated fictional festival copy (English). Sassy, niche, Berlin-anchored — see .cursor/rules.
  */
 
 export const festival = {
-  name: 'SIGNAL',
-  nameSuffix: 'FEST',
-  tagline: 'Underground electronic · 2026',
+  name: 'Synchronic',
+  nameSuffix: 'FESTIVAL',
+  tagline: 'Two nights, zero filler',
   dates: '20 — 21 November',
   location: 'Warehouse District',
   city: 'Berlin',
 } as const
 
 export const tickerAnnouncements: string[] = [
-  '◆ LIVE: ACID GREEN ROOM OPENS MIDNIGHT',
-  '◆ AFTER-PARTY — INDUSTRIAL HALL — 04:00',
-  '◆ SECRET GUEST — STAGE B — SATURDAY',
-  '◆ EARLY BIRD ENDS — FRIDAY 23:59 CET',
-  '◆ NEW: IMMERSIVE LIGHT LAB — NORTH WING',
-  '◆ WORKSHOPS — SYNTH + MODULAR — DAY PASS',
-  '◆ BACKSTAGE MEET & GREET — LIMITED SLOTS',
-  '◆ TICKET TIER UP — IN 3 DAYS',
+  '◆ LOCK IN — MAGENTA ROOM OPENS AFTER MIDNIGHT',
+  '◆ AFTERPARTY — INDUSTRIAL HALL — 04:00 · NO GUEST LIST AT THE DOOR',
+  '◆ SECRET GUEST — STAGE B — SATURDAY · YOU’LL HEAR IT FIRST',
+  '◆ EARLY BIRD DIES FRIDAY 23:59 CET — DON’T WHINE LATER',
+  '◆ NEW: IMMERSIVE LIGHT LAB — NORTH WING · GO GET LOST',
+  '◆ SYNTH + MODULAR WORKSHOPS — DAY PASS · NERDS WELCOME',
+  '◆ BACKSTAGE MEET & GREET — TINY SLICE OF SLOTS',
+  '◆ TIER JUMPS IN 3 DAYS — YOU’VE BEEN WARNED',
 ]
 
 /** Ticker strip between gallery and lineup (separate feed). */
 export const lineupTickerAnnouncements: string[] = [
-  '◆ LINEUP SUBJECT TO CHANGE — CHECK THE APP',
-  '◆ MAIN STAGE — DAY 1 OPENS 18:00 · DAY 2 OPENS 17:00',
-  '◆ B2B SETS — SEE GRID FOR PAIRINGS',
-  '◆ NO RE-ENTRY AFTER 02:00 — PLAN AHEAD',
-  '◆ HEARING PROTECTION — FREE AT INFO',
-  '◆ ACCESS INFO — GATE C — PRM ENTRANCE',
+  '◆ LINEUP SHIFTS — CHECK THE APP BEFORE YOU COMMIT',
+  '◆ MAIN — DAY 1 FROM 18:00 · DAY 2 FROM 17:00',
+  '◆ B2B PAIRINGS ON THE GRID — READ CLOSELY',
+  '◆ NO RE-ENTRY AFTER 02:00 — PLAN LIKE YOU MEAN IT',
+  '◆ HEARING PROTECTION — FREE AT INFO · USE IT',
+  '◆ ACCESS — GATE C · PRM ENTRANCE MARKED',
 ]
