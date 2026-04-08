@@ -10,6 +10,8 @@ export default defineNuxtConfig({
   ],
 
   app: {
+    // GitHub project Pages: https://<user>.github.io/<repo>/ — set NUXT_APP_BASE_URL in CI
+    baseURL: process.env.NUXT_APP_BASE_URL || '/',
     head: {
       htmlAttrs: { lang: 'en' },
       title: 'Synchronic — Underground electronic',
