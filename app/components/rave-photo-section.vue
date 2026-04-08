@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
-import { galleryImages } from '~/data/gallery-images'
+
+const { preloadAll, galleryImages } = useGalleryAssets()
 
 const root = ref<HTMLElement | null>(null)
 const rail = ref<HTMLElement | null>(null)
@@ -58,39 +59,9 @@ watch(activeCaptionIndex, (next, prev) => {
   else if (next < prev) captionSlideName.value = 'rave-cap-back'
 })
 
-useHead({
-  link: images.map((item) => ({
-    rel: 'preload' as const,
-    as: 'image' as const,
-    href: item.src,
-  })),
-})
-
-function preloadImage(src: string, timeoutMs = 30000): Promise<void> {
-  return new Promise((resolve) => {
-    const done = () => resolve()
-    const failTimer = window.setTimeout(done, timeoutMs)
-    const img = new Image()
-    img.onload = () => {
-      window.clearTimeout(failTimer)
-      if (typeof img.decode === 'function') {
-        img.decode().then(done).catch(done)
-      }
-      else {
-        done()
-      }
-    }
-    img.onerror = () => {
-      window.clearTimeout(failTimer)
-      done()
-    }
-    img.src = src
-  })
-}
-
 async function warmupGallery(): Promise<void> {
   if (typeof window === 'undefined') return
-  await Promise.all(images.map((item) => preloadImage(item.src)))
+  await preloadAll()
   showGallery.value = true
 }
 

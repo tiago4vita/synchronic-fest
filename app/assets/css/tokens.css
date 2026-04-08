@@ -153,6 +153,13 @@ body {
   overflow-x: clip;
 }
 
+/* Boot overlay cannot dismiss without JS — hide when scripting is unavailable */
+@media (scripting: none) {
+  [data-boot-overlay] {
+    display: none !important;
+  }
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
