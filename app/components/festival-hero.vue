@@ -14,23 +14,29 @@ import { festival } from '~/data/site'
     <div class="festival-hero__grid" aria-hidden="true" />
 
     <div class="festival-hero__inner">
-      <p class="festival-hero__eyebrow">
-        <span class="festival-hero__eyebrow-accent">{{ festival.dates }}</span>
-        <span class="festival-hero__eyebrow-muted">· {{ festival.city }}</span>
-      </p>
-
       <h1 id="hero-title" class="festival-hero__title">
         <span class="festival-hero__name">{{ festival.name }}</span>
-        <span class="festival-hero__suffix">{{ festival.nameSuffix }}</span>
       </h1>
 
-      <p class="festival-hero__tagline">
-        {{ festival.tagline }}
-      </p>
-
-      <p class="festival-hero__meta">
-        {{ festival.location }}
-      </p>
+      <p class="sr-only">20–21 November 2026, Berlin</p>
+      <div
+        class="festival-hero__dates"
+        aria-hidden="true"
+      >
+        <p
+          v-for="night in festival.nights"
+          :key="night.day"
+          class="festival-hero__date"
+        >
+          <span class="festival-hero__date-when">
+            <span class="festival-hero__date-day">
+              {{ night.day }}<span class="festival-hero__ordinal">{{ night.ordinal }}</span>
+            </span>
+            <span>{{ festival.monthShort }} {{ festival.yearShort }}</span>
+          </span>
+          <span>{{ festival.city }}</span>
+        </p>
+      </div>
     </div>
   </section>
 </template>
@@ -72,79 +78,60 @@ import { festival } from '~/data/site'
 .festival-hero__inner {
   position: relative;
   z-index: 2;
-  max-width: var(--content-max);
   width: 100%;
   text-align: center;
 }
 
-.festival-hero__eyebrow {
-  margin: 0 0 var(--space-lg);
-  font-family: var(--font-label);
-  font-size: var(--text-label);
-  font-weight: var(--font-weight-medium);
-  letter-spacing: var(--letter-spacing-wide);
-  text-transform: uppercase;
-}
-
-.festival-hero__eyebrow-accent,
-.festival-hero__eyebrow-muted {
-  font-family: var(--font-label);
-}
-
-.festival-hero__eyebrow-accent {
-  color: var(--color-hero-eyebrow-signal);
-}
-
-.festival-hero__eyebrow-muted {
-  color: var(--color-fg-muted);
-}
-
 .festival-hero__title {
   margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: center;
-  gap: 0.15em 0.25em;
-  font-family: var(--font-display);
-  font-weight: var(--font-weight-bold);
-  font-size: var(--text-hero-xl);
   line-height: 0.92;
   letter-spacing: var(--letter-spacing-tight);
   text-transform: uppercase;
 }
 
 .festival-hero__name {
+  font-family: var(--font-led);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--text-hero-name);
+  color: var(--color-accent-magenta);
+}
+
+.festival-hero__dates {
+  margin: var(--space-xl) 0 0;
+  display: grid;
+  justify-content: center;
+  font-family: var(--font-helvetica);
+  font-size: var(--text-hero-date);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: var(--letter-spacing-hero-date);
+  line-height: 1;
+  text-transform: uppercase;
   color: var(--color-fg-primary);
 }
 
-.festival-hero__suffix {
-  color: var(--color-fg-on-hero-accent);
-  background: var(--color-hero-accent);
-  padding: 0 0.12em;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
+.festival-hero__date {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  column-gap: var(--space-hero-date-city);
 }
 
-.festival-hero__tagline {
-  margin: var(--space-xl) 0 0;
-  font-family: var(--font-body);
-  font-size: var(--text-hero-lg);
-  font-weight: var(--font-weight-regular);
-  color: var(--color-fg-muted);
-  max-width: 28ch;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.45;
+.festival-hero__date-when {
+  display: flex;
+  align-items: start;
+  column-gap: 0.5em;
 }
 
-.festival-hero__meta {
-  margin: var(--space-lg) 0 0;
-  font-family: var(--font-label);
-  font-size: var(--text-label);
-  letter-spacing: var(--letter-spacing-wide);
-  text-transform: uppercase;
-  color: var(--color-fg-muted);
+.festival-hero__date-day {
+  display: inline-flex;
+  align-items: flex-start;
+}
+
+.festival-hero__ordinal {
+  font-size: var(--text-hero-ordinal);
+  line-height: 2;
+  margin-inline-start: 0.08em;
 }
 
 @media (prefers-reduced-motion: reduce) {

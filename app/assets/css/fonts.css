@@ -2,3 +2,55 @@
  * Self-hosted display face (editorial). Latin via variable WOFF2; CJK/Arabic use Noto from Google Fonts in nuxt.config.
  */
 @import "@fontsource-variable/zalando-sans-expanded";
+
+/**
+ * Pixel / bitmap faces — digital chrome only (boot, trails, flyer marks).
+ * Regular-only files; do not faux-bold. Bundled from ~/assets/fonts so hashed URLs honor baseURL.
+ */
+@font-face {
+  font-family: "Pixelary";
+  src: url("../fonts/pixelary.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "04B 31";
+  src: url("../fonts/04b-31.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gothic War";
+  src: url("../fonts/Gothic War.otf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "LED Light";
+  src: url("../fonts/LEDLIGHT.otf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Blue Screen";
+  src: url("../fonts/Blue Screen Personal Use.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica";
+  src: url("../fonts/Helvetica.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}

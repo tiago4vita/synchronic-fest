@@ -9,6 +9,12 @@ export const festival = {
   dates: '20 — 21 November',
   location: 'Warehouse District',
   city: 'Berlin',
+  monthShort: 'NOV',
+  yearShort: '26',
+  nights: [
+    { day: 20, ordinal: 'TH' },
+    { day: 21, ordinal: 'TH' },
+  ],
 } as const
 
 export const tickerAnnouncements: string[] = [

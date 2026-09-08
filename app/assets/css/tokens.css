@@ -8,7 +8,7 @@
   --color-bg-base: #fafafa;
   --color-bg-elevated: #ffffff;
   --color-fg-primary: #0a0a0a;
-  --color-fg-muted: #5c5c5c;
+  --color-fg-muted: #0a0a0a;
   --color-border-subtle: #e4e4e4;
   /* Text on yellow / acid fills (dark) */
   --color-fg-on-accent: #0a0a0a;
@@ -18,57 +18,70 @@
   /*
    * Raw accent inks — “primary” = brand lead (magenta); acid/yellow/cyan = supporting only.
    */
-  --color-accent-magenta: #c60bec;
-  --color-accent-acid: #75ca14;
-  --color-accent-cyan: #007b6b;
-  --color-accent-yellow: #feca00;
+  --color-accent-magenta: #C60BEC;
+  --color-accent-acid: #8AED0C;
+  --color-accent-cyan: #0CBAED;
+  --color-accent-yellow: #ED7B0C;
+  --color-accent-purple: #893A98;
   --color-accent-primary: var(--color-accent-magenta);
 
   /* Primary signal — hero suffix, ticker rule, eyebrows, b2b markers (magenta-led) */
   --color-ticker-bg: #0a0a0a;
   --color-ticker-fg: #f5f5f5;
-  --color-ticker-accent: var(--color-accent-primary);
-  --color-hero-accent: var(--color-accent-primary);
-  --color-hero-eyebrow-signal: var(--color-accent-primary);
-  --color-lineup-b2b: var(--color-accent-primary);
+  --color-ticker-accent: var(--color-accent-purple);
+  --color-hero-accent: var(--color-accent-purple);
+  --color-hero-eyebrow-signal: var(--color-accent-purple);
+  --color-lineup-b2b: var(--color-accent-purple);
 
   /*
    * Lineup day rails — day 1 = magenta (brand), day 2 = yellow (contrast channel). One rail per side.
    */
   --color-lineup-rail-day1-bg: var(--color-accent-magenta);
   --color-lineup-rail-day1-fg: #f5f5f5;
-  --color-lineup-rail-day2-bg: var(--color-accent-yellow);
+  --color-lineup-rail-day2-bg: var(--color-accent-acid);
   --color-lineup-rail-day2-fg: #0a0a0a;
 
   /*
    * Tertiary “cold” digital — thin UI chrome, trails, subtle texture (not big hero fills).
    */
   --color-ui-grid-line: color-mix(in srgb, var(--color-accent-cyan) 24%, var(--color-border-subtle));
-  --color-ui-annotation: var(--color-accent-cyan);
-  --color-cursor-trail-cell-bg: color-mix(in srgb, var(--color-accent-cyan) 72%, #0a0a0a);
+  --color-ui-annotation: var(--color-accent-yellow);
+  --color-cursor-trail-cell-bg: var(--color-accent-acid);
   /* Light neutral; slight warmth so it still reads on cyan-tinted cells */
-  --color-cursor-trail-glyph: #f2f0ff;
+  --color-cursor-trail-glyph: var(--color-accent-purple);
   --color-bitmap-dot: color-mix(in srgb, var(--color-accent-cyan) 32%, rgba(10, 10, 10, 0.13));
 
   /* Decorative multilingual layer (Mechatok-style wash) */
   --color-expression-ink: rgba(10, 10, 10, 0.11);
   --color-expression-ink-strong: rgba(10, 10, 10, 0.19);
   /* Decorative multilingual wash — Inter + Noto for JP/KR/Arabic glyphs */
-  --font-expression: "Inter", "Noto Sans JP", "Noto Sans KR", "Noto Sans Arabic",
+  --font-expression: "Helvetica", "Noto Sans JP", "Noto Sans KR", "Noto Sans Arabic",
     system-ui, sans-serif;
 
-  /* ——— Typography (editorial-first, max 3 families) ——— */
+  /* ——— Typography (editorial trio + pixel chrome) ——— */
   /* Display: big headlines, lineup names, photo overlays — Zalando Sans Expanded Variable (self-hosted) */
-  --font-display: "Zalando Sans Expanded Variable", system-ui, sans-serif;
+  --font-display: "Helvetica", system-ui, sans-serif;
   /* Body + UI: paragraphs, eyebrows, ticker, table meta, labels */
-  --font-body: "Inter", system-ui, sans-serif;
-  --font-label: "Inter", system-ui, sans-serif;
+  --font-body: "Helvetica", system-ui, sans-serif;
+  --font-label: "Helvetica", system-ui, sans-serif;
+  /* Pixel / bitmap / gothic war — digital chrome only; Regular weight, no faux-bold */
+  --font-pixel: "Pixelary", ui-monospace, monospace;
+  --font-bitmap: "04B 31", var(--font-pixel);
+  --font-gothic: "Gothic War", system-ui, sans-serif;
+  --font-led: "LED Light", system-ui, sans-serif;
+  --font-blue-screen: "Blue Screen", system-ui, sans-serif;
+  --font-helvetica: "Helvetica", system-ui, sans-serif;
+
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
 
-  --text-hero-xl: clamp(3rem, 12vw, 8rem);
+  --text-hero-xl: clamp(4rem, 12vw, 8rem);
+  /* Fixed size — clamp(min, vw, 16rem) never reaches 16rem until ~2133px wide */
+  --text-hero-name: 16rem;
+  --text-hero-date: 2.5rem;
+  --text-hero-ordinal: 0.75rem;
   --text-hero-lg: clamp(1.125rem, 2.5vw, 1.5rem);
   --text-label: 0.75rem;
   --text-ticker: clamp(0.9rem, 1.5vw, 1.05rem);
@@ -78,7 +91,9 @@
   /* Long set / special set — larger than caption */
   --text-lineup-note: clamp(0.95rem, 1.65vw, 1.125rem);
   --letter-spacing-tight: -0.04em;
+  --letter-spacing-hero-date: -0.05em;
   --letter-spacing-wide: 0.12em;
+  --space-hero-date-city: 3rem;
 
   /* ——— Layout & space ——— */
   --space-xs: 0.25rem;
@@ -104,7 +119,7 @@
   --bitmap-blend-mode: multiply;
   /* Cursor grid trail */
   --cursor-trail-cell: 2rem;
-  --cursor-trail-z: 180;
+  --cursor-trail-z: 0;
   /* Sharp / digital — quick UI and caption cuts (see design-identity motion) */
   --motion-fast: 140ms;
   --motion-base: 240ms;
