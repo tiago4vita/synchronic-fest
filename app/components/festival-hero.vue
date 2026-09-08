@@ -23,19 +23,15 @@ import { festival } from '~/data/site'
         class="festival-hero__dates"
         aria-hidden="true"
       >
-        <p
+        <FestivalDateLock
           v-for="night in festival.nights"
           :key="night.day"
-          class="festival-hero__date"
-        >
-          <span class="festival-hero__date-when">
-            <span class="festival-hero__date-day">
-              {{ night.day }}<span class="festival-hero__ordinal">{{ night.ordinal }}</span>
-            </span>
-            <span>{{ festival.monthShort }} {{ festival.yearShort }}</span>
-          </span>
-          <span>{{ festival.city }}</span>
-        </p>
+          :day="night.day"
+          :ordinal="night.ordinal"
+          :month="festival.monthShort"
+          :year="festival.yearShort"
+          :city="festival.city"
+        />
       </div>
     </div>
   </section>
@@ -100,38 +96,6 @@ import { festival } from '~/data/site'
   margin: var(--space-xl) 0 0;
   display: grid;
   justify-content: center;
-  font-family: var(--font-helvetica);
-  font-size: var(--text-hero-date);
-  font-weight: var(--font-weight-regular);
-  letter-spacing: var(--letter-spacing-hero-date);
-  line-height: 1;
-  text-transform: uppercase;
-  color: var(--color-fg-primary);
-}
-
-.festival-hero__date {
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: start;
-  column-gap: var(--space-hero-date-city);
-}
-
-.festival-hero__date-when {
-  display: flex;
-  align-items: start;
-  column-gap: 0.5em;
-}
-
-.festival-hero__date-day {
-  display: inline-flex;
-  align-items: flex-start;
-}
-
-.festival-hero__ordinal {
-  font-size: var(--text-hero-ordinal);
-  line-height: 2;
-  margin-inline-start: 0.08em;
 }
 
 @media (prefers-reduced-motion: reduce) {
