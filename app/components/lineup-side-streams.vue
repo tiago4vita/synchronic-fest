@@ -82,7 +82,7 @@ const day1Names = computed(() => lineupDays[0]!.rows.map((r) => r.displayName))
 const day2Names = computed(() => lineupDays[1]!.rows.map((r) => r.displayName))
 
 const columnsDay1 = computed(() =>
-  [0, 1, 2, 3].map((i) => ({
+  [0, 1, 2, 3, 4, 5, 6, 7].map((i) => ({
     id: `d1-${i}`,
     duration: 52 + i * 11,
     direction: i % 2 === 0 ? 'up' : 'down',
@@ -91,7 +91,7 @@ const columnsDay1 = computed(() =>
 )
 
 const columnsDay2 = computed(() =>
-  [0, 1, 2, 3].map((i) => ({
+  [0, 1, 2, 3, 4, 5, 6, 7].map((i) => ({
     id: `d2-${i}`,
     duration: 48 + i * 9,
     direction: i % 2 === 1 ? 'up' : 'down',
@@ -201,21 +201,21 @@ const columnsDay2 = computed(() =>
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  width: 6vw;
+  width: 10vw;
   max-height: 100%;
   overflow: hidden;
 }
 
 .lineup-side-streams__rail--day1 {
   justify-content: flex-start;
-  padding-left: max(0px, env(safe-area-inset-left));
+  padding-left: max(0rem, env(safe-area-inset-left));
   background: var(--color-lineup-rail-day1-bg);
   color: var(--color-lineup-rail-day1-fg);
 }
 
 .lineup-side-streams__rail--day2 {
   justify-content: flex-end;
-  padding-right: max(0px, env(safe-area-inset-right));
+  padding-right: max(0rem, env(safe-area-inset-right));
   background: var(--color-lineup-rail-day2-bg);
   color: var(--color-lineup-rail-day2-fg);
 }
@@ -308,7 +308,6 @@ const columnsDay2 = computed(() =>
 /* Size contrast only — lines stack with gap, no overlap in the same column */
 .lineup-side-streams__line--head {
   font-weight: var(--font-weight-bold);
-  letter-spacing: 0.05em;
   font-size: clamp(1.05rem, 2.75vw, 1.9rem);
 }
 

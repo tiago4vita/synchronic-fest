@@ -37,9 +37,9 @@
    * Lineup day rails — day 1 = magenta (brand), day 2 = yellow (contrast channel). One rail per side.
    */
   --color-lineup-rail-day1-bg: var(--color-accent-magenta);
-  --color-lineup-rail-day1-fg: #f5f5f5;
+  --color-lineup-rail-day1-fg: var(--color-accent-acid);
   --color-lineup-rail-day2-bg: var(--color-accent-acid);
-  --color-lineup-rail-day2-fg: #0a0a0a;
+  --color-lineup-rail-day2-fg: var(--color-accent-magenta);
 
   /*
    * Tertiary “cold” digital — thin UI chrome, trails, subtle texture (not big hero fills).
