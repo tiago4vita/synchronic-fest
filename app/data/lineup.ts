@@ -79,17 +79,17 @@ export const lineupDays: LineupDayBlock[] = [
       { id: 'brutalismus3000', stage: 'MAIN', countryCode: 'DE', displayName: 'Brutalismus 3000' },
       { id: 'kobosil', stage: 'MAIN', countryCode: 'DE', displayName: 'Kobosil' },
       { id: 'horsegiirl', stage: 'MAIN', countryCode: 'DE', displayName: 'horsegiirL' },
-      { id: 'mallgrab', stage: 'MAIN', countryCode: 'AU', displayName: 'Mall Grab', note: 'Long set' },
+      { id: 'mallgrab', stage: 'LAB', countryCode: 'AU', displayName: 'Mall Grab', note: 'Long set' },
       {
         id: 'yukimatsu',
         stage: 'MAIN',
         countryCode: 'JP',
         displayName: '¥ØU$UK€ ¥UK1MAT$U',
       },
-      { id: 'u96', stage: 'MAIN', countryCode: 'DE', displayName: 'U96' },
       { id: 'pegassi', stage: 'LAB', countryCode: 'UK', displayName: 'Pegassi' },
       { id: 'atrip', stage: 'LAB', countryCode: 'SE', displayName: 'ATRIP' },
       { id: 'rhr', stage: 'LAB', countryCode: 'BR', displayName: 'RHR' },
+      { id: 'mechatok', stage: 'MAIN', countryCode: 'DE', displayName: 'Mechatok' },
       {
         id: 'worm-eurohead',
         stage: 'LAB',
@@ -98,7 +98,7 @@ export const lineupDays: LineupDayBlock[] = [
       },
       {
         id: 'ecco2k',
-        stage: 'LAB',
+        stage: 'MAIN',
         countryCode: 'SE',
         displayName: 'Ecco2k',
         note: 'Special set',

@@ -308,7 +308,7 @@ onUnmounted(() => {
 .rave-photo__caption {
   margin: 0;
   max-width: min(38rem, 88vw);
-  font-family: var(--font-display);
+  font-family: var(--font-led);
   font-size: clamp(1.15rem, 2.35vw, 1.75rem);
   font-weight: var(--font-weight-bold);
   line-height: 1.2;

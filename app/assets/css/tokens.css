@@ -23,6 +23,8 @@
   --color-accent-cyan: #0CBAED;
   --color-accent-yellow: #ED7B0C;
   --color-accent-purple: #893A98;
+
+  --color-accent-error: #ED0C0C;
   --color-accent-primary: var(--color-accent-magenta);
 
   /* Primary signal — hero suffix, ticker rule, eyebrows, b2b markers (magenta-led) */
@@ -32,6 +34,8 @@
   --color-hero-accent: var(--color-accent-purple);
   --color-hero-eyebrow-signal: var(--color-accent-purple);
   --color-lineup-b2b: var(--color-accent-purple);
+  --color-distant-trail-cell-bg: var(--color-fg-muted);
+  --color-distant-trail-glyph: var(--color-bg-base);
 
   /*
    * Lineup day rails — day 1 = magenta (brand), day 2 = yellow (contrast channel). One rail per side.
@@ -124,6 +128,12 @@
   /* Cursor grid trail */
   --cursor-trail-cell: 2rem;
   --cursor-trail-z: 0;
+  /* Distant ghost trails in lineup (scaled planes, not the live pointer) */
+  /* Distant ghost trails in lineup — each plane gets its own camera in this FOV range */
+  --lineup-distant-trail-cell: 2rem;
+  --lineup-distant-trail-z: 1;
+  --lineup-distant-trail-perspective-min: 240px;
+  --lineup-distant-trail-perspective-max: 1280px;
   /* Sharp / digital — quick UI and caption cuts (see design-identity motion) */
   --motion-fast: 140ms;
   --motion-base: 240ms;

@@ -32,6 +32,9 @@ function stageLetter(stage: LineupStage): 'M' | 'L' {
       class="lineup__grid"
       aria-hidden="true"
     />
+    <ClientOnly>
+      <LineupDistantTrails />
+    </ClientOnly>
     <LineupSideStreams />
     <div class="lineup__inner">
       <h2
