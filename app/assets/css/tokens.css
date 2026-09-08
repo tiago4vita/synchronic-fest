@@ -31,6 +31,9 @@
   --color-ticker-bg: #0a0a0a;
   --color-ticker-fg: #f5f5f5;
   --color-ticker-accent: var(--color-accent-purple);
+  /* Strobe-warning overlay — true black / white, not the light site theme */
+  --color-strobe-warn-bg: #000000;
+  --color-strobe-warn-fg: #ffffff;
   --color-hero-accent: var(--color-accent-purple);
   --color-hero-eyebrow-signal: var(--color-accent-purple);
   --color-lineup-b2b: var(--color-accent-purple);
