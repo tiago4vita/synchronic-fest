@@ -2,7 +2,7 @@
 import ExpressionBackground from '~/components/expression-background.vue'
 import LineupSideStreams from '~/components/lineup-side-streams.vue'
 import { festival } from '~/data/site'
-import { lineupDays } from '~/data/lineup'
+import { lineupDays, type LineupStage } from '~/data/lineup'
 
 /** Split on b2b (case-insensitive); re-insert with primary accent (magenta) in template */
 function b2bParts(displayName: string): string[] {
@@ -11,6 +11,10 @@ function b2bParts(displayName: string): string[] {
 
 function nightOrdinal(day: number): string {
   return festival.nights.find((night) => night.day === day)?.ordinal ?? 'TH'
+}
+
+function stageLetter(stage: LineupStage): 'M' | 'L' {
+  return stage === 'LAB' ? 'L' : 'M'
 }
 </script>
 
@@ -106,7 +110,13 @@ function nightOrdinal(day: number): string {
                   {{ row.countryCode }}
                 </td>
                 <td class="lineup__cell lineup__cell--stage">
-                  {{ row.stage }}
+                  <span
+                    class="lineup__stage-mark"
+                    :class="row.stage === 'LAB' ? 'lineup__stage-mark--lab' : 'lineup__stage-mark--main'"
+                    :aria-label="row.stage"
+                  >
+                    <span aria-hidden="true">{{ stageLetter(row.stage) }}</span>
+                  </span>
                 </td>
               </tr>
             </tbody>
@@ -234,13 +244,40 @@ function nightOrdinal(day: number): string {
 
 .lineup__th--stage,
 .lineup__cell--stage {
-  width: 10%;
-  padding-right: clamp(0.5rem, 1.5vw, 1rem);
+  width: var(--size-lineup-stage-mark);
+  padding-right: 0;
 }
 
-.lineup__cell--from,
-.lineup__cell--stage {
+.lineup__cell--from {
   font-family: var(--font-label);
+}
+
+.lineup__cell--stage {
+  vertical-align: middle;
+}
+
+.lineup__stage-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--size-lineup-stage-mark);
+  height: var(--size-lineup-stage-mark);
+  border-radius: 50%;
+  font-family: var(--font-helvetica);
+  font-size: var(--text-lineup-stage-mark);
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: var(--color-fg-on-accent);
+}
+
+.lineup__stage-mark--main {
+  background: var(--color-lineup-stage-main);
+}
+
+.lineup__stage-mark--lab {
+  background: var(--color-lineup-stage-lab);
 }
 
 .lineup__cell {
@@ -266,23 +303,21 @@ function nightOrdinal(day: number): string {
 .lineup__b2b {
   display: inline;
   font-family: var(--font-label);
-  font-size: 0.52em;
-  font-weight: var(--font-weight-semiregular);
-  letter-spacing: 0.08em;
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-regular);
+  letter-spacing: -0.05rem;
   text-transform: lowercase;
-  vertical-align: 0.2em;
   color: var(--color-lineup-b2b);
 }
 
 .lineup__note {
   display: inline;
-  margin-left: 0.35em;
   font-family: var(--font-label);
-  font-size: clamp(0.65rem, 1.15vw, 0.8rem);
-  font-weight: var(--font-weight-semiregular);
-  letter-spacing: 0.06em;
-  line-height: 1.15;
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-regular);
+  letter-spacing: -0.05rem;
   text-transform: uppercase;
+  margin-left: 0.5rem;
   color: var(--color-ui-annotation);
 }
 

@@ -9,9 +9,9 @@ const phrasesDay1 = [
   'weird sync',
   'it’s time to rave',
   'tec tec tec',
-  'fuck AI',
-  'legalize nuclear weapons',
-  'do u got a lighter?',
+  'f*ck AI',
+  'existence is pain',
+  'got a lighter?',
   'lorem ipsum bro idk',
   'エクスタシーとは何ですか',
 ]
@@ -20,7 +20,7 @@ const phrasesDay2 = [
   'i sold my soul for this lineup',
   '@@@@@@@',
   'online irl',
-  'bolichito',
+  'conpratelo guey',
   'soundsystem é coisa séria',
   "don't shazam",
   '다음 트랙',
@@ -267,10 +267,10 @@ const columnsDay2 = computed(() =>
   margin: 0;
   writing-mode: vertical-rl;
   text-orientation: mixed;
-  font-family: var(--font-display);
+  font-family: var(--font-helvetica);
   text-transform: uppercase;
   white-space: nowrap;
-  line-height: 1;
+  line-height: 1.2;
 }
 
 /* Same ink as foreground; blurred duplicates read as bitmap-style echo */

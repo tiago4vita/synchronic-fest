@@ -90,6 +90,10 @@
   --text-lineup-name: clamp(1.5rem, 4vw, 2.5rem);
   /* Long set / special set — larger than caption */
   --text-lineup-note: clamp(0.95rem, 1.65vw, 1.125rem);
+  --size-lineup-stage-mark: 2rem;
+  --text-lineup-stage-mark: 1rem;
+  --color-lineup-stage-main: var(--color-accent-yellow);
+  --color-lineup-stage-lab: var(--color-accent-cyan);
   --letter-spacing-tight: -0.04em;
   --letter-spacing-hero-date: -0.05em;
   --letter-spacing-wide: 0.12em;
