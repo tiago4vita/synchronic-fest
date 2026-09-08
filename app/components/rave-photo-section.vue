@@ -171,6 +171,7 @@ onUnmounted(() => {
 <template>
   <section
     ref="root"
+    id="rave-photo"
     class="rave-photo"
     :class="{ 'rave-photo--static': reduceMotion }"
     :style="sectionHeightStyle"
@@ -263,7 +264,7 @@ onUnmounted(() => {
 .rave-photo {
   position: relative;
   z-index: 1;
-  background: var(--color-bg-base);
+  background: transparent;
 }
 
 .rave-photo__pin {

@@ -23,8 +23,9 @@ const GLYPH_COUNT = GLYPH_ARR.length
 const BLANK_AFTER_MS = 820
 const HARD_KILL_MS = 1050
 
-/** Trail only paints while the pointer is over this section (`festival-hero.vue`). */
+/** Trail paints from the hero through the gallery, sitting behind `#rave-photo`. */
 const HERO_ROOT_ID = 'site-hero'
+const RAVE_PHOTO_ROOT_ID = 'rave-photo'
 
 const cells = shallowRef<TrailCell[]>([])
 const gridKeyToId = new Map<string, number>()
@@ -77,15 +78,27 @@ function getHeroRoot(): HTMLElement | null {
   return document.getElementById(HERO_ROOT_ID)
 }
 
-function isPointerInHero(clientX: number, clientY: number): boolean {
+function getRavePhotoRoot(): HTMLElement | null {
+  if (typeof document === 'undefined') return null
+  return document.getElementById(RAVE_PHOTO_ROOT_ID)
+}
+
+/** Active from the top of the hero to the bottom of the photo section (inclusive). */
+function isPointerInTrailZone(clientX: number, clientY: number): boolean {
   const hero = getHeroRoot()
   if (!hero) return false
-  const r = hero.getBoundingClientRect()
+  const heroRect = hero.getBoundingClientRect()
+  const gallery = getRavePhotoRoot()
+  const galleryRect = gallery?.getBoundingClientRect()
+  const top = heroRect.top
+  const bottom = galleryRect ? galleryRect.bottom : heroRect.bottom
+  const left = Math.min(heroRect.left, galleryRect?.left ?? heroRect.left)
+  const right = Math.max(heroRect.right, galleryRect?.right ?? heroRect.right)
   return (
-    clientX >= r.left
-    && clientX <= r.right
-    && clientY >= r.top
-    && clientY <= r.bottom
+    clientX >= left
+    && clientX <= right
+    && clientY >= top
+    && clientY <= bottom
   )
 }
 
@@ -161,7 +174,7 @@ function spawnBrush(pageX: number, pageY: number) {
 }
 
 function paintAtViewport(clientX: number, clientY: number) {
-  if (!isPointerInHero(clientX, clientY)) {
+  if (!isPointerInTrailZone(clientX, clientY)) {
     clearTrail()
     return
   }
