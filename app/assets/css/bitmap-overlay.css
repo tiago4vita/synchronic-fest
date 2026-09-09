@@ -1,5 +1,5 @@
 /**
- * Full-viewport halftone-style bitmap — sits above page paint, below nothing interactive.
+ * Full-viewport LED / halftone bitmap — sits above page paint, below nothing interactive.
  * Tuned for the light base theme; tokens in tokens.css.
  */
 

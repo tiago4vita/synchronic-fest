@@ -1,11 +1,20 @@
 <script setup lang="ts">
 import ExpressionBackground from '~/components/expression-background.vue'
 import LineupSideStreams from '~/components/lineup-side-streams.vue'
-import { lineupDays, ordinalSuffix } from '~/data/lineup'
+import { festival } from '~/data/site'
+import { lineupDays, type LineupStage } from '~/data/lineup'
 
 /** Split on b2b (case-insensitive); re-insert with primary accent (magenta) in template */
 function b2bParts(displayName: string): string[] {
   return displayName.split(/\s+b2b\s+/i)
+}
+
+function nightOrdinal(day: number): string {
+  return festival.nights.find((night) => night.day === day)?.ordinal ?? 'TH'
+}
+
+function stageLetter(stage: LineupStage): 'M' | 'L' {
+  return stage === 'LAB' ? 'L' : 'M'
 }
 </script>
 
@@ -16,13 +25,12 @@ function b2bParts(displayName: string): string[] {
   >
     <ExpressionBackground />
     <div
-      class="lineup__grain"
-      aria-hidden="true"
-    />
-    <div
       class="lineup__grid"
       aria-hidden="true"
     />
+    <ClientOnly>
+      <LineupDistantTrails />
+    </ClientOnly>
     <LineupSideStreams />
     <div class="lineup__inner">
       <h2
@@ -32,7 +40,6 @@ function b2bParts(displayName: string): string[] {
         Lineup
       </h2>
       <p class="lineup__lede">
-        Curated fiction — names set in type, not in stone.
       </p>
 
       <div class="lineup__days">
@@ -41,9 +48,16 @@ function b2bParts(displayName: string): string[] {
           :key="dayBlock.id"
           class="lineup__day-block"
         >
+          <FestivalDateLock
+            class="lineup__day-date"
+            :day="dayBlock.dayOfMonth"
+            :ordinal="nightOrdinal(dayBlock.dayOfMonth)"
+            :month="festival.monthShort"
+            :year="festival.yearShort"
+          />
           <table
             class="lineup__table"
-            :aria-label="`${dayBlock.weekday} ${dayBlock.monthBracket} ${dayBlock.dayOfMonth}, schedule`"
+            :aria-label="`${dayBlock.weekday} ${dayBlock.dayOfMonth} ${festival.monthShort} ${festival.yearShort}, ${festival.city}, schedule`"
           >
             <thead>
               <tr>
@@ -52,24 +66,6 @@ function b2bParts(displayName: string): string[] {
                   class="lineup__th lineup__th--label lineup__th--artist-head"
                 >
                   [ARTIST]
-                </th>
-                <th
-                  scope="col"
-                  class="lineup__th lineup__th--label lineup__th--day"
-                >
-                  [DAY]
-                </th>
-                <th
-                  scope="col"
-                  class="lineup__th lineup__th--label lineup__th--month"
-                >
-                  [MONTH]
-                </th>
-                <th
-                  scope="col"
-                  class="lineup__th lineup__th--label lineup__th--date"
-                >
-                  [DATE]
                 </th>
                 <th
                   scope="col"
@@ -87,7 +83,7 @@ function b2bParts(displayName: string): string[] {
             </thead>
             <tbody>
               <tr
-                v-for="(row, rowIndex) in dayBlock.rows"
+                v-for="row in dayBlock.rows"
                 :key="`${dayBlock.id}-${row.id}`"
                 class="lineup__row"
               >
@@ -109,33 +105,17 @@ function b2bParts(displayName: string): string[] {
                     >{{ row.note }}</span>
                   </span>
                 </td>
-                <td
-                  v-if="rowIndex === 0"
-                  class="lineup__cell lineup__cell--day lineup__cell--date-span"
-                  :rowspan="dayBlock.rows.length"
-                >
-                  {{ dayBlock.weekday }}
-                </td>
-                <td
-                  v-if="rowIndex === 0"
-                  class="lineup__cell lineup__cell--month lineup__cell--date-span"
-                  :rowspan="dayBlock.rows.length"
-                >
-                  {{ dayBlock.monthBracket }}
-                </td>
-                <td
-                  v-if="rowIndex === 0"
-                  class="lineup__cell lineup__cell--date lineup__cell--date-span"
-                  :rowspan="dayBlock.rows.length"
-                >
-                  {{ dayBlock.dayOfMonth }}<sup class="lineup__ordinal">{{ ordinalSuffix(dayBlock.dayOfMonth) }}</sup>
-                  {{ ' ' }}{{ dayBlock.yearShort }}
-                </td>
                 <td class="lineup__cell lineup__cell--from">
                   {{ row.countryCode }}
                 </td>
                 <td class="lineup__cell lineup__cell--stage">
-                  {{ row.stage }}
+                  <span
+                    class="lineup__stage-mark"
+                    :class="row.stage === 'LAB' ? 'lineup__stage-mark--lab' : 'lineup__stage-mark--main'"
+                    :aria-label="row.stage"
+                  >
+                    <span aria-hidden="true">{{ stageLetter(row.stage) }}</span>
+                  </span>
                 </td>
               </tr>
             </tbody>
@@ -155,17 +135,7 @@ function b2bParts(displayName: string): string[] {
   background: var(--color-bg-base);
 }
 
-/* Match hero: film grain + structural grid (mask tuned for a tall section) */
-.lineup__grain {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  opacity: var(--grain-opacity);
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  mix-blend-mode: multiply;
-}
-
+/* Structural grid (mask tuned for a tall section) */
 .lineup__grid {
   position: absolute;
   inset: 0;
@@ -192,7 +162,7 @@ function b2bParts(displayName: string): string[] {
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-regular);
   letter-spacing: var(--letter-spacing-tight);
   text-transform: uppercase;
 }
@@ -215,13 +185,17 @@ function b2bParts(displayName: string): string[] {
   margin: 0;
 }
 
+.lineup__day-date {
+  margin: 0 0 var(--space-lg);
+}
+
 .lineup__table {
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
   font-family: var(--font-display);
   font-size: clamp(0.78rem, 1.35vw, 0.95rem);
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-regular);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--color-fg-primary);
@@ -229,9 +203,9 @@ function b2bParts(displayName: string): string[] {
 }
 
 .lineup__th {
-  padding: 0 0 var(--space-xs);
+  padding: 0 0 var(--space-md);
   font-family: var(--font-label);
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-semiregular);
   text-align: left;
   vertical-align: bottom;
   line-height: 1.1;
@@ -244,28 +218,10 @@ function b2bParts(displayName: string): string[] {
   letter-spacing: 0.14em;
 }
 
-/* Wide column gaps — engineered grid (order: artist | day | month | date | from | stage) */
+/* Wide column gaps — artist | from | stage */
 .lineup__th--artist-head,
 .lineup__cell--artist {
   width: fit-content;
-  padding-right: clamp(0.75rem, 2vw, 1.75rem);
-}
-
-.lineup__th--day,
-.lineup__cell--day {
-  width: 6%;
-  padding-right: clamp(0.75rem, 2vw, 1.75rem);
-}
-
-.lineup__th--month,
-.lineup__cell--month {
-  width: 8%;
-  padding-right: clamp(0.75rem, 2vw, 1.75rem);
-}
-
-.lineup__th--date,
-.lineup__cell--date {
-  width: 12%;
   padding-right: clamp(0.75rem, 2vw, 1.75rem);
 }
 
@@ -277,20 +233,40 @@ function b2bParts(displayName: string): string[] {
 
 .lineup__th--stage,
 .lineup__cell--stage {
-  width: 10%;
-  padding-right: clamp(0.5rem, 1.5vw, 1rem);
+  width: var(--size-lineup-stage-mark);
+  padding-right: 0;
 }
 
-.lineup__cell--date-span {
-  vertical-align: top;
-}
-
-.lineup__cell--day,
-.lineup__cell--month,
-.lineup__cell--date,
-.lineup__cell--from,
-.lineup__cell--stage {
+.lineup__cell--from {
   font-family: var(--font-label);
+}
+
+.lineup__cell--stage {
+  vertical-align: middle;
+}
+
+.lineup__stage-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--size-lineup-stage-mark);
+  height: var(--size-lineup-stage-mark);
+  border-radius: 50%;
+  font-family: var(--font-helvetica);
+  font-size: var(--text-lineup-stage-mark);
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: var(--color-fg-on-accent);
+}
+
+.lineup__stage-mark--main {
+  background: var(--color-lineup-stage-main);
+}
+
+.lineup__stage-mark--lab {
+  background: var(--color-lineup-stage-lab);
 }
 
 .lineup__cell {
@@ -304,17 +280,10 @@ function b2bParts(displayName: string): string[] {
   display: inline;
 }
 
-.lineup__ordinal {
-  font-family: var(--font-label);
-  font-size: 0.65em;
-  font-weight: var(--font-weight-bold);
-  line-height: 0;
-}
-
 .lineup__name {
   display: inline;
   font-size: var(--text-lineup-name);
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-regular);
   letter-spacing: -0.035em;
   line-height: 1.1;
   color: var(--color-fg-primary);
@@ -323,23 +292,21 @@ function b2bParts(displayName: string): string[] {
 .lineup__b2b {
   display: inline;
   font-family: var(--font-label);
-  font-size: 0.52em;
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: 0.08em;
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-regular);
+  letter-spacing: -0.05rem;
   text-transform: lowercase;
-  vertical-align: 0.2em;
   color: var(--color-lineup-b2b);
 }
 
 .lineup__note {
   display: inline;
-  margin-left: 0.35em;
   font-family: var(--font-label);
-  font-size: clamp(0.65rem, 1.15vw, 0.8rem);
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: 0.06em;
-  line-height: 1.15;
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-regular);
+  letter-spacing: -0.05rem;
   text-transform: uppercase;
+  margin-left: 0.5rem;
   color: var(--color-ui-annotation);
 }
 

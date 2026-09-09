@@ -24,7 +24,8 @@ alwaysApply: true
 
 - **Editorial-first:** **Zalando Sans Expanded** (variable, self-hosted via Fontsource) = **display** — hero headlines, lineup act names, large section titles, rave-photo overlays.
 - **Inter** = **body + UI** — paragraphs, eyebrows, ticker, table headers/meta, labels, buttons.
-- **Noto Sans** (JP / KR / Arabic from Google Fonts) = **script fallback** for decorative/expression layers and any mixed-script UI; do not add a fourth Latin family.
+- **Noto Sans** (JP / KR / Arabic from Google Fonts) = **script fallback** for decorative/expression layers and any mixed-script UI.
+- **Pixel / bitmap (digital chrome only):** **Pixelary** (`--font-pixel`) and **04B 31** (`--font-bitmap`) — self-hosted Regular faces for boot, trails, flyer marks, terminal chrome. Not a fourth editorial Latin; do not use as body or hero display.
 
 ## Typography & layout
 

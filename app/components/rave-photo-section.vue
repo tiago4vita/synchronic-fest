@@ -171,6 +171,7 @@ onUnmounted(() => {
 <template>
   <section
     ref="root"
+    id="rave-photo"
     class="rave-photo"
     :class="{ 'rave-photo--static': reduceMotion }"
     :style="sectionHeightStyle"
@@ -263,7 +264,7 @@ onUnmounted(() => {
 .rave-photo {
   position: relative;
   z-index: 1;
-  background: var(--color-bg-base);
+  background: transparent;
 }
 
 .rave-photo__pin {
@@ -308,7 +309,7 @@ onUnmounted(() => {
 .rave-photo__caption {
   margin: 0;
   max-width: min(38rem, 88vw);
-  font-family: var(--font-display);
+  font-family: var(--font-led);
   font-size: clamp(1.15rem, 2.35vw, 1.75rem);
   font-weight: var(--font-weight-bold);
   line-height: 1.2;
