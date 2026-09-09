@@ -138,6 +138,21 @@
   --ticket-gap: clamp(1.5rem, 7.2vw, 6.875rem);
   --ticket-row-max: calc(3 * 20.9375rem + 2 * 6.875rem);
   --ticket-perspective: 52rem;
+  --ticket-orbit-size: 80vh;
+  --ticket-orbit-duration: 72s;
+  --ticket-trail-halo: 6.5rem;
+  --color-ticket-trail-cell: #000000;
+  --color-ticket-trail-glyph: var(--color-tickets-fg);
+  /* VIP trail palette */
+  --color-vip-trail-orange: #FF8000;
+  --color-vip-trail-red: #FF0000;
+  --color-vip-trail-yellow: #FFFF00;
+  --color-vip-trail-lime: #2AFF00;
+  --color-vip-trail-cyan: #00FFF2;
+  --color-vip-trail-blue: #0022FF;
+  --color-vip-trail-purple: #C900FF;
+  --color-vip-trail-pink: #FB00FF;
+  --color-vip-trail-violet: #8800FF;
 
   /* ——— Effects ——— */
   /* Global LED / halftone bitmap screen (fixed overlay) */

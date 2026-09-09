@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import type { TicketTier } from '~/data/tickets'
 
 const props = defineProps<{
@@ -8,6 +9,8 @@ const props = defineProps<{
 
 const { root, active, faceStyle, onPointerEnter, onPointerMove, onPointerLeave } =
   usePointerTilt()
+
+const face = ref<HTMLElement | null>(null)
 
 const delayStyle = {
   '--ticket-motion-delay': `${props.motionIndex * 0.28}s`,
@@ -33,43 +36,62 @@ const delayStyle = {
     >
       <div class="ticket-card__float">
         <div
-          class="ticket-card__face"
+          class="ticket-card__rig"
           :style="faceStyle"
         >
-          <img
-            class="ticket-card__art"
-            :src="ticket.image"
-            alt=""
-            width="335"
-            height="494"
-            draggable="false"
-          >
-          <span
-            class="ticket-card__glint"
+          <div class="ticket-card__stack">
+            <TicketCardTrail
+              :active="active"
+              :hole="face"
+              :chroma="ticket.finish === 'holo' ? 'vip' : 'black'"
+            />
+            <div
+              ref="face"
+              class="ticket-card__face"
+            >
+              <img
+                class="ticket-card__art"
+                :src="ticket.image"
+                alt=""
+                width="335"
+                height="494"
+                draggable="false"
+              >
+              <span
+                class="ticket-card__glint"
+                aria-hidden="true"
+              />
+            </div>
+          </div>
+          <p
+            class="ticket-card__price"
             aria-hidden="true"
-          />
+          >
+            {{ ticket.priceLabel }}
+          </p>
         </div>
       </div>
     </div>
-    <p
-      class="ticket-card__price"
-      aria-hidden="true"
-    >
-      {{ ticket.priceLabel }}
-    </p>
   </article>
 </template>
 
 <style scoped>
 .ticket-card {
+  position: relative;
+  z-index: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
 }
 
+.ticket-card--active {
+  z-index: 5;
+}
+
 .ticket-card__scene {
   width: 100%;
+  overflow: visible;
   perspective: var(--ticket-perspective);
   perspective-origin: 50% 45%;
   cursor: pointer;
@@ -77,31 +99,50 @@ const delayStyle = {
 
 .ticket-card__float {
   width: 100%;
+  overflow: visible;
   animation: ticket-idle 3.2s var(--ease-sharp) var(--ticket-motion-delay, 0s) infinite;
   transform-style: preserve-3d;
   pointer-events: none;
 }
 
+.ticket-card__rig {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  overflow: visible;
+  transform-style: preserve-3d;
+  transform-origin: center 42%;
+  transform: rotateX(0deg) rotateY(0deg);
+}
+
+.ticket-card__stack {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  overflow: visible;
+  transform-style: preserve-3d;
+}
+
+.ticket-card:not(.ticket-card--active) .ticket-card__rig {
+  transition: transform var(--motion-base) var(--ease-out-expo);
+}
+
 .ticket-card__face {
   position: relative;
+  z-index: 2;
   display: block;
   width: 100%;
   aspect-ratio: 335 / 494;
   height: auto;
   border-radius: var(--ticket-card-radius);
+  transform: translateZ(1.25rem);
   transform-style: preserve-3d;
-  transform-origin: center center;
-  transform: rotateX(0deg) rotateY(0deg);
-  transition: box-shadow var(--motion-base) var(--ease-out-expo);
   box-shadow: 0 0.85rem 1.75rem rgb(0 0 0 / 0.38);
   overflow: hidden;
   pointer-events: none;
-}
-
-.ticket-card:not(.ticket-card--active) .ticket-card__face {
-  transition:
-    transform var(--motion-base) var(--ease-out-expo),
-    box-shadow var(--motion-base) var(--ease-out-expo);
+  transition: box-shadow var(--motion-base) var(--ease-out-expo);
 }
 
 .ticket-card--active .ticket-card__face {
@@ -162,12 +203,16 @@ const delayStyle = {
 }
 
 .ticket-card__price {
+  position: relative;
+  z-index: 2;
   margin: var(--space-md) 0 0;
   font-family: var(--font-body);
   font-size: var(--text-tickets-price);
   font-weight: var(--font-weight-regular);
   letter-spacing: 0.04em;
   color: var(--color-tickets-fg);
+  transform: translateZ(1.25rem);
+  background-color: var(--color-tickets-bg);
 }
 
 @keyframes ticket-idle {
@@ -203,5 +248,4 @@ const delayStyle = {
     cursor: default;
   }
 }
-
 </style>
