@@ -61,12 +61,7 @@ function onAfterLeave() {
       aria-live="assertive"
       :aria-busy="!ready"
     >
-      <p class="sr-only">
-        Warning: this site uses strobe lights and rapid flashing. Leave if that is unsafe for you.
-      </p>
-
       <div class="boot-shell">
-        <p class="boot-shell__kicker">Strobe effects</p>
         <h1 class="boot-shell__title">
           WARNING
         </h1>
@@ -99,15 +94,6 @@ function onAfterLeave() {
   width: min(40rem, calc(100% - var(--space-xl)));
   padding: var(--space-md);
   text-align: center;
-}
-
-.boot-shell__kicker {
-  margin: 0;
-  font-family: var(--font-pixel), ui-monospace, sans-serif;
-  font-size: var(--text-label);
-  font-weight: var(--font-weight-regular);
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
 }
 
 .boot-shell__title {

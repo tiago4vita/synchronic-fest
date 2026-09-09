@@ -95,6 +95,10 @@
   --text-expression-xl: clamp(2.65rem, 8.5vw, 5.25rem);
   --text-expression-md: clamp(1.05rem, 3.1vw, 1.85rem);
   --text-lineup-name: clamp(1.5rem, 4vw, 2.5rem);
+  /* 96pt → 8rem cap; scales down on smaller viewports */
+  --text-tickets-title: clamp(2.5rem, 7.2vw, 8rem);
+  --text-tickets-lede: clamp(0.95rem, 1.35vw, 1.25rem);
+  --text-tickets-price: clamp(0.875rem, 1.05vw, 1rem);
   /* Long set / special set — larger than caption */
   --text-lineup-note: clamp(0.95rem, 1.65vw, 1.125rem);
   --size-lineup-stage-mark: 2rem;
@@ -119,14 +123,26 @@
   --ticker-height: 3rem;
   --radius-sm: 0.25rem;
   --radius-md: 0.5rem;
+  --radius-lg: 1rem;
   --content-max: 72rem;
 
+  /*
+   * Tickets band — art is 335×494 @ 16 radius, 110 gap, 96pt title.
+   * rem + clamp so the row shrinks instead of overflowing.
+   */
+  --color-tickets-bg: var(--color-ticker-bg);
+  --color-tickets-fg: var(--color-ticker-fg);
+  --color-tickets-accent: var(--color-accent-yellow);
+  --ticket-card-max-width: 20.9375rem;
+  --ticket-card-radius: var(--radius-lg);
+  --ticket-gap: clamp(1.5rem, 7.2vw, 6.875rem);
+  --ticket-row-max: calc(3 * 20.9375rem + 2 * 6.875rem);
+  --ticket-perspective: 52rem;
+
   /* ——— Effects ——— */
-  --grain-opacity: 0.06;
-  /* Global halftone / bitmap screen (fixed overlay) */
+  /* Global LED / halftone bitmap screen (fixed overlay) */
   --bitmap-opacity: 0.42;
   --bitmap-size: 3px;
-  /* --color-bitmap-dot defined above (tertiary cyan tint) */
   --bitmap-blend-mode: multiply;
   /* Cursor grid trail */
   --cursor-trail-cell: 2rem;

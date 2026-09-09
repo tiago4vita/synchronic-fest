@@ -12,6 +12,11 @@ import { lineupTickerAnnouncements } from '~/data/site'
       aria-label="Lineup and venue notices"
     />
     <LineupSection />
+    <AnnouncementTicker
+      :items="lineupTickerAnnouncements"
+      aria-label="Lineup and venue notices"
+    />
+    <TicketSection />
   </main>
 </template>
 
