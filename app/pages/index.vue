@@ -3,21 +3,24 @@ import { lineupTickerAnnouncements } from '~/data/site'
 </script>
 
 <template>
-  <main class="page-home">
-    <FestivalHero />
-    <AnnouncementTicker placement="hero" />
-    <RavePhotoSection />
-    <AnnouncementTicker
-      :items="lineupTickerAnnouncements"
-      aria-label="Lineup and venue notices"
-    />
-    <LineupSection />
-    <AnnouncementTicker
-      :items="lineupTickerAnnouncements"
-      aria-label="Lineup and venue notices"
-    />
-    <TicketSection />
-  </main>
+  <div class="page-home">
+    <main>
+      <FestivalHero />
+      <AnnouncementTicker placement="hero" />
+      <RavePhotoSection />
+      <AnnouncementTicker
+        :items="lineupTickerAnnouncements"
+        aria-label="Lineup and venue notices"
+      />
+      <LineupSection />
+      <AnnouncementTicker
+        :items="lineupTickerAnnouncements"
+        aria-label="Lineup and venue notices"
+      />
+      <TicketSection />
+    </main>
+    <SiteFooter />
+  </div>
 </template>
 
 <style scoped>

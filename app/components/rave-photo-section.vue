@@ -22,9 +22,9 @@ const images = galleryImages
 
 /** Three beats tied to scroll thirds — edit copy here. */
 const GALLERY_CAPTIONS: readonly [string, string, string] = [
-  'Berlin concrete, cables everywhere — bodies stacked to the ceiling. If you know, you know.',
-  'Strobe, haze, no apologies. Half these shots are already two beats behind real life.',
-  'Stay tuned: what you scrolled past was the warm-up. The roster hits next.',
+  'Concrete, cables everywhere, this only could take place in Berlin.',
+  'That chronically feeling of being in sync with the crowd.',
+  'This distinct experience is what we call SYNCHRONIC.',
 ]
 
 const activeCaptionIndex = computed(() => {
@@ -38,9 +38,9 @@ const activeCaption = computed(() => GALLERY_CAPTIONS[activeCaptionIndex.value]!
 
 /** Scroll phase: magenta lead → acid channel → digital chrome */
 const CAPTION_ACCENT_VARS = [
-  'var(--color-accent-primary)',
-  'var(--color-accent-acid)',
   'var(--color-accent-cyan)',
+  'var(--color-accent-acid)',
+  'var(--color-accent-magenta)',
 ] as const
 
 const captionAccentColor = computed(
