@@ -21,7 +21,7 @@ const props = withDefaults(
 const feed = computed(() => props.items ?? tickerAnnouncements)
 
 const crawlText = computed(() =>
-  feed.value.map((s) => s.trim()).join('     ·     '),
+  feed.value.map((s) => s.trim()).join('          '),
 )
 
 const srSummary = computed(() => feed.value.join('. '))

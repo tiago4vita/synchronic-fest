@@ -198,8 +198,8 @@ const columnsDay2 = computed(() =>
 
 .lineup-side-streams__rail {
   position: relative;
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
   align-items: stretch;
   width: 10vw;
   max-height: 100%;
@@ -207,14 +207,12 @@ const columnsDay2 = computed(() =>
 }
 
 .lineup-side-streams__rail--day1 {
-  justify-content: flex-start;
   padding-left: max(0rem, env(safe-area-inset-left));
   background: var(--color-lineup-rail-day1-bg);
   color: var(--color-lineup-rail-day1-fg);
 }
 
 .lineup-side-streams__rail--day2 {
-  justify-content: flex-end;
   padding-right: max(0rem, env(safe-area-inset-right));
   background: var(--color-lineup-rail-day2-bg);
   color: var(--color-lineup-rail-day2-fg);
@@ -222,14 +220,8 @@ const columnsDay2 = computed(() =>
 
 .lineup-side-streams__col {
   position: relative;
-  flex: 0 0 clamp(1.35rem, 2.8vw, 2.1rem);
-  margin-right: -0.5rem;
-  overflow: visible;
-}
-
-.lineup-side-streams__rail--day2 .lineup-side-streams__col {
-  margin-right: 0;
-  margin-left: -0.5rem;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .lineup-side-streams__track {
@@ -290,14 +282,14 @@ const columnsDay2 = computed(() =>
 }
 
 .lineup-side-streams__echo--near {
-  filter: blur(2px);
+  filter: blur(1px);
   opacity: 0.4;
 }
 
 .lineup-side-streams__echo--far {
-  filter: blur(4.5px);
-  opacity: 0.34;
-  transform: translate(-2px, 8px);
+  filter: blur(2.25px);
+  opacity: 0.3;
+  transform: translate(-0.5px, 3px);
 }
 
 .lineup-side-streams__face {
@@ -308,7 +300,7 @@ const columnsDay2 = computed(() =>
 /* Size contrast only — lines stack with gap, no overlap in the same column */
 .lineup-side-streams__line--head {
   font-weight: var(--font-weight-bold);
-  font-size: clamp(1.05rem, 2.75vw, 1.9rem);
+  font-size: clamp(1rem, 2.75vw, 1.8rem);
 }
 
 .lineup-side-streams__line--body {
