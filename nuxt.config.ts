@@ -14,12 +14,12 @@ export default defineNuxtConfig({
     baseURL: process.env.NUXT_APP_BASE_URL || '/',
     head: {
       htmlAttrs: { lang: 'en' },
-      title: 'Synchronic — Underground electronic',
+      title: 'SYNCHRONIC',
       meta: [
         {
           name: 'description',
           content:
-            'Synchronic — fictional festival experience, Berlin. Portfolio front-end & design.',
+            'SYNCHRONIC — fictional festival. Portfolio front-end & design.',
         },
       ],
       link: [
